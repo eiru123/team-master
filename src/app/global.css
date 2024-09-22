@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'title';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 네이버 나눔 스퀘어 라운드: text */
+@font-face {
+  font-family: 'text';
+  src: url('/font/NanumSquareRoundR.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* G마켓 산스(m): mini-title */
+@font-face {
+  font-family: 'mini';
+  src: url('/font/GmarketSansTTFMedium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: text;
+}
+
+/* Title (h) */
+.title-font {
+  font-family: title !important;
+}
+
+/* Mini-Title (h) */
+.miniTitle-font {
+  font-family: mini !important;
+}
+
+/* date picker */
+.react-datepicker__input-container input {
+  padding: 4px;
+  border-radius: 8px;
+}
+
+/* index.module.css */
+.container {
+  width: 300px;
+  min-height: 200px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.draggable {
+  padding: 16px;
+  margin: 4px;
+  background-color: lightgray;
+  border: 1px solid gray;
+  cursor: grab;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+/* 공통 높이값 설정 */
+.common-height {
+  height: 100%;
+  min-height: 100vh;
+  /* min-height: calc(100vh - 70px); */
+}
+
+/* 600px 높이 */
+.height-600 {
+  height: 500px;
+}

@@ -1,0 +1,15 @@
+.noticeMain__listItem {
+  width: 100%;
+  margin: 8px 0;
+  border-bottom: 1px solid $dark-lvThree;
+
+  a {
+    @include text-style(14, 400);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px;
+  }
+}

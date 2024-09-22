@@ -1,0 +1,16 @@
+// 화면 전환시 부드럽게
+.fade {
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+// 반응형 (임시 설정)
+.responsive {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+}

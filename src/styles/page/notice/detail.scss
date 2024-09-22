@@ -1,0 +1,13 @@
+.noticeDetail__title {
+  @include text-style(16, 700);
+  border-bottom: 1px solid $dark-lvThree;
+
+  padding: 8px;
+}
+
+.noticeDetail__contents {
+  @include text-style(14, 400);
+
+  margin: 8px;
+  padding: 8px;
+}

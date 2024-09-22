@@ -1,0 +1,15 @@
+// 최상단 gnb
+.gnb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+
+  .nav-title {
+    color: $white;
+  }
+
+  .nav-menu_btn {
+  }
+}

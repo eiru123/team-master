@@ -1,0 +1,5 @@
+@mixin button-style($width: 100%, $background: null, $radius: 4) {
+  width: if(unitless($width), #{$width}px, $width);
+  background-color: $background;
+  border-radius: #{$radius}px;
+}

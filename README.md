@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 식서스를 위한 앱 기능 정리 
+## 1. 필수 기능
+- [ ] 1. 로그인 - 팀원 관리 (정상, 휴면, 대기 회원 - 대기 회원은 빼도 됨.)
+	- [ ] 1-1. 권한 설정 - 회장, 총무, 운영진, 고문, 일반 회원
+- [ ] 2. 팀원 리스트
+	- [ ] 2-1. 팀원 정보 (키, 포지션, 플레이 스타일, 비상 연락망(선택 사항) - 각자 계정에서 수정.)
+		- [ ] 출석, 승률, 출석률
+		- [ ] 실제 출석한 경우 팀장이 출석체크 해주기
+	- [ ] 2-2. 회장 계정 - 팀원들의 플레이 스타일, 티어표 등을 지정
+		- [ ] 팀원 추가하기
+			- [ ] 초대보내기 및 상대방이 수락하기
+- [ ] 3. 경기
+	- [ ] 3-1.이벤트전
+		- [ ] 이벤트전 생성
+			- [ ] 출석 조사 투표 (기간)
+				- [ ] 출석 투표 후 참석자 추가
+			- [ ] 마스터 계정 - 팀원 배분 (팀장 있는 경우 팀장도 지정)
+			- [ ] 팀원 공지 (팀 이미지 업로드)
+				- [ ] 팝업 or 카카오톡 공유하기의 방법
+		- [ ] 이벤트전 결과
+			- [ ] 각 팀원의 정보에 이벤트전 결과 저장 (리그전 승패와 다르게 저장하기)
+			- [ ] 게임 테이블에 데이터 저장
+				- [ ] 팀, 팀원, 점수, 승패 저장
+	- [ ] 3-2. 리그전
+		- [ ] 리그전 기간 설정
+		- [ ] 팀 설정
+			- [ ] 참여 인원 투표
+			- [ ] 팀장 정하기
+			- [ ] 팀원 정하기 - 회장 계정
+			- [ ] 하나의 팀이라도 인원 부족시 이벤트전으로 변경 - 회장에게 질의
+		- [ ] 리그전 팀원 정보
+			- [ ] 리그전 팀에 따라 팀 정보 보여주기
+				- [ ] 팀 이름, 팀 이미지, 팀원 리스트 보여주기(위의 2. 팀원 리스트의 정보 보여주기)
+		- [ ] 리그전 경기 자동 생성
+			- [ ] 2주간의 프리 시즌, 6주간의 리그전 경기 자동 생성
+			- [ ] 인원이 안되는 경우 이벤트전으로 전환 기능 - 이 때 인원 안되는 팀에 패배 증가 및 이외의 팀에 승리 추가
+			- [ ] 리그전 참여 투표 자동 생성 (ex. 화~목)
+			- [ ] 리그전 투표 기간 이후 투표자들 추가기능
+		- [ ] 리그전 결과
+			- [ ] 각 팀원의 리그전 결과 및 리그팀의 결과에 승패 저장
+			- [ ] 게임 테이블에 데이터 저장
+				- [ ] 팀, 팀원, 점수, 승패 저장
+	- [ ] 3-3. 경기 결과 보기
+		- [ ] 리스트로 보여주기
+		- [ ] 경기 날짜, 리그전, 이벤트전 여부, 경기 결과 등 보여주기
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 2. 있으면 좋은 기능
+- [ ] 사이트 전반
+	- [ ] PWA로 전환하기 (현재는 이게 완전히 좋은 방식인지 약간 의문이 듦.)
+- [ ] 이벤트전
+	- [ ] 팀 이미지 생성하기
+- [ ] 팀원 리스트
+	- [ ] 필터 추가
+		- [ ] 포지션
+		- [ ] 승률
+		- [ ] 출석률
+		- [ ] 등등
+- [ ] 리그 전
+	- [ ] 드래프트 진행할 때 팀장들이 같이 들어와서 할 경우
+		- [ ] 드래프트 라이브로 동기화되서 될 수 있도록 기능 구현 (web socket 등 방법 알아보기)
+	- [ ] 트레이드 기간 진행 (팀장 계정)
+		- [ ] 트레이드 요청
+		- [ ] 트레이드 동의
+- [ ] 경기 결과
+	- [ ] 클릭했을 때 해당 이벤트전에 간략한 정보 보여주기
+		- [ ] 자세히 보기 누를 시 해당 경기 결과를 팝업으로 보여주기
+			- [ ] 경기결과
+			- [ ] 팀원 탭
+- [ ] 건의 사항
+	- [ ] 운영진에 대한 건의사항 받기 - 익명
