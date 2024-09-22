@@ -65,12 +65,18 @@ const TeamMainPage = () => {
             </Text>
             <div className=" flex items-center">
               {/* 글을 올린 날짜 === 현재 날짜 시에만 표시 */}
-              <Text type="p" classname=" text-xs bg-sky-400 text-white rounded-sm p-0.5 pl-1">
+              <Text
+                type="p"
+                classname=" text-xs bg-sky-400 text-white rounded-sm p-0.5 pl-1"
+              >
                 N
               </Text>
 
               {/* 가장 최신글 1개 노출 */}
-              <Text type="p" classname=" text-start text-sm ml-1 mr-1 text-ellipsis line-clamp-1">
+              <Text
+                type="p"
+                classname=" text-start text-sm ml-1 mr-1 text-ellipsis line-clamp-1"
+              >
                 식서스의 공지사항입니다. 꼭 읽어주세요
               </Text>
             </div>
@@ -90,7 +96,7 @@ const TeamMainPage = () => {
 
         {/* <!-- 경기 일정 --> */}
         <Wrapper>
-          <Link href="team/schedule" className="">
+          <Link href="/schedule" className="">
             <Text
               type="p"
               classname="bg-slate-500 text-white text-base rounded-tl-lg rounded-tr-lg pt-1 pb-1 pl-3"

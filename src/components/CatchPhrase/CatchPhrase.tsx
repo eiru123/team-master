@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import Text from '../ui/Text';
-import './style.module.scss';
 import Title from '../ui/Title';
 
 const Catchphrase = () => {
