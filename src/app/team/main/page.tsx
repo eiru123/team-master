@@ -1,6 +1,7 @@
 'use client';
 
 import Section from '@/components/ui/section/Section';
+import Link from 'next/link';
 import React from 'react';
 
 const TeamMainPage = () => {
@@ -40,20 +41,22 @@ const TeamMainPage = () => {
         </p>
 
         {/* 사용자가 투표를 했다면 '투표 하라는 문구' 투표 페이지로 넘어감 */}
-        <button
+        <Link
+          href="/team/vote"
           type="button"
           className="text-sm text-[#F6F9F3] miniTitle-font text-center font-light my-2"
         >
           투표 하러가기 ➡️
-        </button>
+        </Link>
 
         {/* 사용자가 투표를 했다면 '투표 결과 보러가기' 투표 페이지로 넘어감 */}
-        <button
+        <Link
+          href="/team/vote"
           type="button"
           className="text-sm text-[#F6F9F3] miniTitle-font text-center font-light my-2"
         >
           투표 결과 보러가기 ➡️
-        </button>
+        </Link>
       </Section>
     </main>
   );
