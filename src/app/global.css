@@ -78,3 +78,36 @@
 .height-600 {
   height: 500px;
 }
+
+/* 2024.10.02 남권 공통 css 설정 */
+@font-face {
+  font-family: 'TheJamsil5Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html, body, main { height : 100vh; }
+body { width: 100%; max-width: 768px; height: 100%; max-height: 100vh; background-color: #0B0F16;  }
+
+.wrapper { padding: 24px 16px; }
+
+/* 날짜 표시 */
+.date-text {
+  font-family: 'TheJamsil5Bold';
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+/* layer0: #0B0F16 */
+/* layer1: #1A1F28 */
+/* layer2: #2E3440 */
+/* layer3: #4C566A */
+
+/* emphasis: #D08770 */
+/* warning: #BF616A */
+/* success: #A3BE8C */
+
+/* GNB-bg: #121721 */
+/* GNB-text: #ECEFF4 */
+/* disabled: #D8DEE9 */
