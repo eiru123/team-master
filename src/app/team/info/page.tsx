@@ -166,10 +166,63 @@
 // };
 
 // export default InfoCentreMainPage;
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 
 const Info = () => {
-  return <div>정보센터</div>;
+  const [player, setPlayer] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        setLoading(true); // Set loading to true before the request
+        const response = await fetch(`/api/players?id=JluQF6FOn2avo63cNjCT`);
+        console.log(response);
+
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+          const result = await response.json();
+          if (!response.ok) {
+            setError(result.error || 'Something went wrong');
+          } else {
+            setPlayer(result);
+            console.log("result:", result);
+          }
+        } else {
+          const text = await response.text();
+          setError(`Unexpected response format: ${text}`);
+        }
+      } catch (error) {
+        setError(error.message || 'An unexpected error occurred');
+      } finally {
+        setLoading(false); // Stop loading when request completes
+      }
+    };
+
+    fetchDocuments();
+  }, []);
+
+  return (
+    <div>
+      <h1>정보센터</h1>
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>} 
+      {player && (
+        <div>
+          <h2>Player Info:</h2>
+          <p>age: {player.age}</p>
+          <p>Name: {player.name}</p>
+          <p>Height: {player.height}</p>
+          <p>Weight: {player.weight}</p>
+          <p>Description: {player.description}</p>
+          <p>Phone Number: {player.phoneNumber}</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Info;
+

@@ -1,6 +1,6 @@
 "use client"
 import styles from './page.module.scss';
-import firestore from "firebase/firestore"
+import firestore from "firebaseApi/firestore"
 import { collection, addDoc } from "firebase/firestore"
 import { useState } from "react"
 

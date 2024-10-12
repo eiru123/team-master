@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import firestore from "firebase/firestore"
+import firestore from "firebaseApi/firestore"
 import { doc, getDoc, collection, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 export async function GET(req: NextRequest) {
