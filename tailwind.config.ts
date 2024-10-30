@@ -110,7 +110,7 @@ const config: Config = {
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
     },
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('tailwindcss-animate'),
   ],
 };
