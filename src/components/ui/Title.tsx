@@ -11,7 +11,7 @@ const Title: React.FC<TitleProps> = ({ children, type, classnames = null }) => {
     case 'main':
       return (
         <h1
-          className={`title-font text-darkMain w-fit text-center dark:text-main font-bold text-3xl ${classnames}`}
+          className={`text-darkMain w-fit text-center dark:text-main font-bold text-3xl ${classnames}`}
         >
           {children}
         </h1>
@@ -20,7 +20,7 @@ const Title: React.FC<TitleProps> = ({ children, type, classnames = null }) => {
     case 'sub':
       return (
         <h2
-          className={`title-font text-darkMain w-fit min-w-28 text-center dark:text-main font-bold text-2xl ${classnames}`}
+          className={`text-darkMain w-fit min-w-28 text-center dark:text-main font-bold text-2xl ${classnames}`}
         >
           {children}
         </h2>
@@ -29,7 +29,7 @@ const Title: React.FC<TitleProps> = ({ children, type, classnames = null }) => {
     case 'mini':
       return (
         <h3
-          className={`miniTitle-font text-darkMain w-fit  min-w-28 text-center dark:text-main font-bold text-xl pt-2 ${classnames}`}
+          className={`text-darkMain w-fit  min-w-28 text-center dark:text-main font-bold text-xl pt-2 ${classnames}`}
         >
           {children}
         </h3>
@@ -38,7 +38,7 @@ const Title: React.FC<TitleProps> = ({ children, type, classnames = null }) => {
     default:
       return (
         <p
-          className={`title-font text-darkMain w-fit  min-w-28 text-center dark:text-main font-bold text-xs ${classnames}`}
+          className={`text-darkMain w-fit  min-w-28 text-center dark:text-main font-bold text-xs ${classnames}`}
         >
           타이틀 크기 설정 바랍니다.
         </p>

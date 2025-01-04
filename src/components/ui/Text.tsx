@@ -1,22 +1,51 @@
 import React from 'react';
 
-interface ContainerProps {
+interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
-  type: 'p' | 'span';
+  type: 'p' | 'span' | 'button' | 'a';
+  fw?: number; // font-weight
+  fz?: number; // font-size
+  padding?: string;
+  margin?: string;
+  color?: string;
   classname?: string;
 }
 
-const Text: React.FC<ContainerProps> = ({ children, type, classname }) => {
-  switch (type) {
-    case 'p':
-      return <p className={`text-darkMain dark:text-main ${classname}`}>{children}</p>;
+const Text: React.FC<ContainerProps> = ({
+  children,
+  type,
+  fw,
+  fz = 16,
+  padding,
+  margin,
+  color = '#5C665F',
+  classname,
+  style,
+  ...rest
+}) => {
+  const calcLineHeight = fz * 1.5;
 
-    case 'span':
-      return <span className={`text-darkMain dark:text-main ${classname}`}>{children}</span>;
+  const combinedStyle = {
+    fontWeight: fw,
+    fontSize: `${fz}px`,
+    lineHeight: `${calcLineHeight}px`,
+    padding,
+    margin,
+    color: classname?.includes('text-') ? undefined : color,
+    ...style,
+  };
 
-    default:
-      return <p>글자 타입을 설정해주세요</p>;
-  }
+  const Element = type;
+
+  return (
+    <Element
+      className={`text-[#191919] dark:text-darkMain ${classname || ''}`}
+      style={combinedStyle}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
 };
 
 export default Text;
