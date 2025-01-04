@@ -1,8 +1,10 @@
 import React from 'react';
 
-interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
+type ElementTypes = 'p' | 'span' | 'button' | 'a';
+
+interface BaseProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
-  type: 'p' | 'span' | 'button' | 'a';
+  type: ElementTypes;
   fw?: number; // font-weight
   fz?: number; // font-size
   padding?: string;
@@ -10,6 +12,25 @@ interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
   color?: string;
   classname?: string;
 }
+
+// 타입별 추가 속성 정의
+interface AnchorProps extends BaseProps {
+  type: 'a';
+  href: string;
+}
+
+interface ButtonProps extends BaseProps {
+  type: 'button';
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+// 나머지 요소에 대한 타입
+interface OtherProps extends BaseProps {
+  type: 'p' | 'span';
+}
+
+// 전체 타입
+type ContainerProps = AnchorProps | ButtonProps | OtherProps;
 
 const Text: React.FC<ContainerProps> = ({
   children,
@@ -23,29 +44,68 @@ const Text: React.FC<ContainerProps> = ({
   style,
   ...rest
 }) => {
-  const calcLineHeight = fz * 1.5;
+  const calcLineHeight = fz * 1.5; // line-height 계산
+  const hasFontSize = classname?.includes('text-');
 
   const combinedStyle = {
     fontWeight: fw,
-    fontSize: `${fz}px`,
-    lineHeight: `${calcLineHeight}px`,
+    fontSize: hasFontSize ? undefined : `${fz}px`,
+    lineHeight: hasFontSize ? undefined : `${calcLineHeight}px`,
     padding,
     margin,
     color: classname?.includes('text-') ? undefined : color,
     ...style,
   };
 
-  const Element = type;
+  // 요소 렌더링
+  switch (type) {
+    case 'a':
+      return (
+        <a
+          className={`text-[#191919] dark:text-darkMain ${classname || ''}`}
+          style={combinedStyle}
+          {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {children}
+        </a>
+      );
 
-  return (
-    <Element
-      className={`text-[#191919] dark:text-darkMain ${classname || ''}`}
-      style={combinedStyle}
-      {...rest}
-    >
-      {children}
-    </Element>
-  );
+    case 'button':
+      return (
+        <button
+          className={`text-[#191919] dark:text-darkMain ${classname || ''}`}
+          style={combinedStyle}
+          {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        >
+          {children}
+        </button>
+      );
+
+    case 'p':
+      return (
+        <p
+          className={`text-[#191919] dark:text-darkMain ${classname || ''}`}
+          style={combinedStyle}
+          {...(rest as React.HTMLAttributes<HTMLParagraphElement>)}
+        >
+          {children}
+        </p>
+      );
+
+    case 'span':
+      return (
+        <span
+          className={`text-[#191919] dark:text-darkMain ${classname || ''}`}
+          style={combinedStyle}
+          {...(rest as React.HTMLAttributes<HTMLSpanElement>)}
+        >
+          {children}
+        </span>
+      );
+
+    default:
+      return null;
+  }
 };
 
 export default Text;

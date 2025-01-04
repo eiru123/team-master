@@ -16,7 +16,10 @@ const NoticeMainPage = () => {
       <div className="p-8 pb-4 w-full">
         {/* list-item */}
         <div className=" border-b-2 pt-2 pb-2">
-          <Link className=" w-full flex items-center justify-between" href={`/notice/detail/${0}`}>
+          <Link
+            className=" w-full flex items-center justify-between"
+            href={`/notice/detail/${0}`}
+          >
             <Text type="p" classname=" text-base text-ellipsis line-clamp-1">
               <Text type="span" classname=" text-red-500 pr-1">
                 [필독]
@@ -35,7 +38,10 @@ const NoticeMainPage = () => {
       <div className="p-8 pt-2 w-full">
         {/* list-item */}
         <div className=" border-b-2 pt-2 pb-2">
-          <Link className=" w-full flex items-center justify-between" href={`/notice/detail/${1}`}>
+          <Link
+            className=" w-full flex items-center justify-between"
+            href={`/notice/detail/${1}`}
+          >
             <Text type="p" classname=" text-base text-ellipsis line-clamp-1">
               공지사항 게시글 1
             </Text>
@@ -47,7 +53,10 @@ const NoticeMainPage = () => {
 
         {/* list-item */}
         <div className=" border-b-2 pt-2 pb-2">
-          <Link className=" w-full flex items-center justify-between" href={`/notice/detail/${2}`}>
+          <Link
+            className=" w-full flex items-center justify-between"
+            href={`/notice/detail/${2}`}
+          >
             <Text type="p" classname=" text-base text-ellipsis line-clamp-1">
               공지사항 게시글 2
             </Text>
@@ -59,7 +68,10 @@ const NoticeMainPage = () => {
 
         {/* list-item */}
         <div className=" border-b-2 pt-2 pb-2">
-          <Link className=" w-full flex items-center justify-between" href={`/notice/detail/${3}`}>
+          <Link
+            className=" w-full flex items-center justify-between"
+            href={`/notice/detail/${3}`}
+          >
             <Text type="p" classname=" text-base text-ellipsis line-clamp-1">
               공지사항 게시글 3
             </Text>
