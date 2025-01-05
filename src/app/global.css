@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "Moneygraphy";
+  src: url("/font/Moneygraphy-Pixel.woff") format("woff");
+}
+
+@font-face {
   font-family: 'title';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
     format('woff');

@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        moneygraphy: ['Moneygraphy', 'sans-serif'],
+      },
       boxShadow: {
         'inner-custom': '0 0 3px 3px #513FA1',
       },
