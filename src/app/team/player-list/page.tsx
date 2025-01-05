@@ -1,3 +1,9 @@
+import PlayerList from '@/components/team/PlayerList';
+
 export default function PlayerListPage() {
-  return <div>팀원 리스트 페이지</div>;
+  return (
+    <div>
+      <PlayerList />
+    </div>
+  );
 }
