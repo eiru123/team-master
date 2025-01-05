@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* === font === */
 @font-face {
   font-family: "Moneygraphy";
   src: url("/font/Moneygraphy-Pixel.woff") format("woff");
 }
 
-/* === font === */
 @font-face {
   font-family: "SUITE";
   font-weight: 300;
