@@ -7,42 +7,90 @@
   src: url("/font/Moneygraphy-Pixel.woff") format("woff");
 }
 
+/* === font === */
 @font-face {
+  font-family: "SUITE";
+  font-weight: 300;
+  src: url("/font/SUITE-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 400;
+  src: url("/font/SUITE-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 500;
+  src: url("/font/SUITE-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 600;
+  src: url("/font/SUITE-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 700;
+  src: url("/font/SUITE-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 800;
+  src: url("/font/SUITE-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 900;
+  src: url("/font/SUITE-Heavy.woff2") format("woff2");
+}
+@font-face {
+  font-family: "seolleimcool-SemiBold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/seolleimcool-SemiBold.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Jua";
+  src: url("/font/Jua-Regular.ttf");
+}
+/* // === font === */
+
+
+/* @font-face {
   font-family: 'title';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
     format('woff');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 /* 네이버 나눔 스퀘어 라운드: text */
-@font-face {
+/* @font-face {
   font-family: 'text';
   src: url('/font/NanumSquareRoundR.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 /* G마켓 산스(m): mini-title */
-@font-face {
+/* @font-face {
   font-family: 'mini';
   src: url('/font/GmarketSansTTFMedium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 * {
-  font-family: text;
+  font-family: "SUITE";
 }
 
 /* Title (h) */
 .title-font {
-  font-family: title !important;
+  /* font-family: title !important; */
 }
 
 /* Mini-Title (h) */
 .miniTitle-font {
-  font-family: mini !important;
+  /* font-family: mini !important; */
 }
 
 /* date picker */

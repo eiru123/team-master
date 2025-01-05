@@ -1,0 +1,32 @@
+/* LeagueContainer */
+.league-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px;
+  margin: 8px 0;
+}
+
+/* TeamTag */
+.team-tag {
+  width: 90%;
+  padding: 4px;
+  border: 1px solid #5c665f;
+  border-radius: 8px;
+  background-color: #fff;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+
+  font-weight: 400;
+}
+
+/* Highlight for the first place team */
+.team-tag.highlight {
+  box-shadow: 0 0 8px #ecade3, 0 0 15px #ecade3, 0 0 20px #ecade3;
+  font-weight: 700;
+}

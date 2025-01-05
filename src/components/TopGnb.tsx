@@ -15,7 +15,9 @@ const TopBar = ({ depth, title }: TopBarProps) => {
     case 0:
       return (
         <Wrapper classname="bg-main dark:bg-darkMain flex justify-between items-center">
-          <Title type="main">{title}</Title>
+          <Title type="main" classnames="font-jua">
+            {title}
+          </Title>
           <ToggleMenuBtn />
         </Wrapper>
       );
@@ -56,7 +58,9 @@ const TopBar = ({ depth, title }: TopBarProps) => {
 
     default:
       return (
-        <Wrapper classname="bg-main dark:bg-darkMain">알맞는 depth가 설정되지 않았습니다.</Wrapper>
+        <Wrapper classname="bg-main dark:bg-darkMain">
+          알맞는 depth가 설정되지 않았습니다.
+        </Wrapper>
       );
   }
 };
