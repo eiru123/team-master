@@ -39,7 +39,7 @@ const Text: React.FC<ContainerProps> = ({
   fz = 16,
   padding,
   margin,
-  color = '#5C665F',
+  color,
   classname,
   style,
   ...rest
