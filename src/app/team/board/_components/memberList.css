@@ -1,0 +1,35 @@
+.teams-container {
+  width: 90%;
+  margin: 12px auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #5c665f;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.img-box {
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 8px;
+}

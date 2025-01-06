@@ -5,17 +5,19 @@ import CloseBtn from './ui/button/CloseBtn';
 import Wrapper from './ui/Wrapper';
 import Title from './ui/Title';
 
-interface TopBarProps {
+type Props = {
   depth: 0 | 1 | 2 | 3;
   title: string;
-}
+};
 
-const TopBar = ({ depth, title }: TopBarProps) => {
+const TopBar = ({ depth, title }: Props) => {
   switch (depth) {
     case 0:
       return (
         <Wrapper classname="bg-main dark:bg-darkMain flex justify-between items-center">
-          <Title type="main">{title}</Title>
+          <Title type="main" classnames="font-jua">
+            {title}
+          </Title>
           <ToggleMenuBtn />
         </Wrapper>
       );
@@ -56,7 +58,9 @@ const TopBar = ({ depth, title }: TopBarProps) => {
 
     default:
       return (
-        <Wrapper classname="bg-main dark:bg-darkMain">알맞는 depth가 설정되지 않았습니다.</Wrapper>
+        <Wrapper classname="bg-main dark:bg-darkMain">
+          알맞는 depth가 설정되지 않았습니다.
+        </Wrapper>
       );
   }
 };
