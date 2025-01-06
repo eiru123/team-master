@@ -52,6 +52,10 @@ const VotePage = () => {
     setVoteStatus(vote);
   };
 
+  const onClickSendVote = () => {
+    console.log('투표 결과 제출: ', voteStatus);
+  };
+
   return (
     <>
       <TopBar depth={1} title="투표하기" />
@@ -72,6 +76,7 @@ const VotePage = () => {
       </div>
 
       {/* 투표 하는 곳 */}
+      {/* 이미 투표를 했다면 사용자가 투표한 곳에 스탬프 / 다시하기 누르면 사라짐 */}
       <div className="flex flex-col justify-center items-center">
         <div className="grid grid-cols-2 w-[90%] mx-auto">
           <Text
@@ -109,9 +114,26 @@ const VotePage = () => {
             ) : null}
           </Text>
         </div>
-        <button className="border my-5 px-4 py-1 rounded-full bg-[#9966cc] text-white active:shadow-inner-button">
+
+        {/* 투표를 완료 할 때 버튼 */}
+        {/* <Text
+          type="button"
+          onClick={onClickSendVote}
+          color="#fff"
+          className="border my-5 px-4 py-1 rounded-full bg-[#9966cc] active:shadow-inner-button"
+        >
           제출
-        </button>
+        </Text> */}
+
+        {/* 투표를 했는데 바꾸고 싶을 때 버튼 */}
+        <Text
+          type="button"
+          onClick={onClickSendVote}
+          color="#fff"
+          className="border my-5 px-4 py-1 rounded-full bg-[#385f9b] active:shadow-inner-button"
+        >
+          다시 투표하기
+        </Text>
       </div>
 
       {/* [리그전] 참여 인원 정보 ( 팀 이름<grid-cols-${num}> / 해당 팀의 참여 인원 목록) */}
@@ -170,7 +192,6 @@ const VotePage = () => {
         </Text>
         <div className="grid grid-cols-4 w-full">
           <MemberTag status="skip" name="강동구" />
-          <MemberTag status="skip" name="이승" />
         </div>
       </div>
     </>
