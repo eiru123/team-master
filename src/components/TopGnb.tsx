@@ -5,12 +5,12 @@ import CloseBtn from './ui/button/CloseBtn';
 import Wrapper from './ui/Wrapper';
 import Title from './ui/Title';
 
-interface TopBarProps {
+type Props = {
   depth: 0 | 1 | 2 | 3;
   title: string;
-}
+};
 
-const TopBar = ({ depth, title }: TopBarProps) => {
+const TopBar = ({ depth, title }: Props) => {
   switch (depth) {
     case 0:
       return (

@@ -3,10 +3,10 @@ import './voteContainer.css';
 import NameTag from '@/components/ui/NameTag';
 import Image from 'next/image';
 
-interface Props {
+type Props = {
   timePercent: number;
   timeLeft: string;
-}
+};
 
 const VoteContainer = ({ timePercent, timeLeft }: Props) => {
   const percent = Math.floor(timePercent);

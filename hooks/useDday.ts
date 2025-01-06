@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-interface DdayResult {
+type Props = {
   timeLeft: string;
   timePercent: number;
   timeYear: number
 }
 
-export function useDday(endDateStr: string, startDateStr?: string): DdayResult {
+export function useDday(endDateStr: string, startDateStr?: string): Props {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [timePercent, setTimePercent] = useState<number>(0);
   const [timeYear, setTimeYear] = useState<number>(0);
