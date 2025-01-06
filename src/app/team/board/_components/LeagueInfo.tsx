@@ -8,11 +8,11 @@ type Teams = {
   rate: number;
 };
 
-interface Props {
+type Props = {
   year: number;
   season: string;
   teamList: Teams[];
-}
+};
 
 const LeagueInfo = ({ year, season, teamList }: Props) => {
   return (
