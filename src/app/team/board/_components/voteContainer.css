@@ -26,6 +26,7 @@
   align-items: center;
 
   width: calc(100% - 16px);
+  height: 128px;
   border: 1px dotted #5c665f;
   border-radius: 8px;
   padding: 8px;
@@ -43,6 +44,10 @@
 .inner-container.team-p {
   background-color: #9966cc;
   color: #fff;
+}
+
+.inner-container.no-team {
+  background-color: #fff;
 }
 
 

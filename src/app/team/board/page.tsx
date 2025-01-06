@@ -131,7 +131,9 @@ const TeamMainPage = () => {
         </Wrapper>
 
         {/* 투표하기 */}
-        <VoteContainer timePercent={timePercent} timeLeft={timeLeft} />
+        <Text type="a" href="/team/vote">
+          <VoteContainer timePercent={timePercent} timeLeft={timeLeft} />
+        </Text>
 
         {/* 멤버리스트 */}
         <MemberList />
