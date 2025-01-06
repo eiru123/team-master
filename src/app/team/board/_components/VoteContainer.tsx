@@ -2,10 +2,10 @@ import React from 'react';
 import './voteContainer.css';
 import NameTag from '@/components/ui/NameTag';
 
-interface Props {
+type Props = {
   timePercent: number;
   timeLeft: string;
-}
+};
 
 const VoteContainer = ({ timePercent, timeLeft }: Props) => {
   const percent = Math.floor(timePercent);

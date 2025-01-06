@@ -1,9 +1,9 @@
 import React from 'react';
 import Text from './Text';
 
-interface Props {
+type Props = {
   type: 'l-free' | 'l-ing' | 'normal' | 'event';
-}
+};
 
 const NameTag: React.FC<Props> = ({ type }) => {
   switch (type) {
