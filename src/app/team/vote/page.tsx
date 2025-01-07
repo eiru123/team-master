@@ -77,8 +77,9 @@ const VotePage = () => {
 
       {/* 투표 하는 곳 */}
       {/* 이미 투표를 했다면 사용자가 투표한 곳에 스탬프 / 다시하기 누르면 사라짐 */}
+      {/* 투표 날짜가 끝났으면 만료 이미지 + 버튼 비활성화 */}
       <div className="flex flex-col justify-center items-center">
-        <div className="grid grid-cols-2 w-[90%] mx-auto">
+        <div className="grid grid-cols-2 w-[90%] mx-auto relative">
           <Text
             type="button"
             data-vote="join"
@@ -113,6 +114,14 @@ const VotePage = () => {
               />
             ) : null}
           </Text>
+
+          {/* <Image
+            src={'/img/vote/vote-closed.png'}
+            alt="투표 만료 표시"
+            width={200}
+            height={50}
+            className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          /> */}
         </div>
 
         {/* 투표를 완료 할 때 버튼 */}
