@@ -1,0 +1,59 @@
+/* VoteContainer */
+.vote-container {
+  width: 90%;
+  border: 1px solid #5c665f;
+  border-radius: 8px;
+  margin: 16px auto;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Background with conic-gradient */
+  background: conic-gradient(
+    #292d23 calc(var(--percent) * 3.6deg),
+    white 0deg
+  );
+}
+
+/* InnerContainer */
+.inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: calc(100% - 16px);
+  border: 1px solid #5c665f;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.inner-container.team-w {
+  background-color: #fff;
+}
+
+.inner-container.team-b {
+  background-color: #121212;
+  color: #fff;
+}
+
+.inner-container.team-p {
+  background-color: #7661fb;
+  color: #fff;
+}
+
+
+/* Text styles */
+.vote-text {
+  font-size: 16px;
+  color: inherit;
+  margin: 4px 0;
+}
+
+/* NameTag Example */
+.name-tag.l-free {
+  /* Add specific styles for l-free class here */
+}
