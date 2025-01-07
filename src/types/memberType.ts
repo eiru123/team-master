@@ -1,3 +1,5 @@
+type MemberStatus = 'normal' | 'dormant' | 'waiting';
+
 type MemberBasicInfo = {
   id: string;
   name: string;
@@ -9,6 +11,7 @@ type MemberBasicInfo = {
   playStyle?: string;
   number?: number;
   description?: string;
+  status: MemberStatus;
 };
 
 type MemberGameStats = {
