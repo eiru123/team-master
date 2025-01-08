@@ -7,34 +7,34 @@ const REDIRECT_URI = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI;
 const KAKAO_REST_API = process.env.NEXT_PUBLIC_KAKAO_REST_API;
 const KAKAO_CLIENT_SECRET = process.env.NEXT_PUBLIC_KAKAO_CLIENT_SECRET;
 
-const RedirectPage = () => {
-    const [token, setToken] = useState(null);
+const RedirectPage =  () => {
+    const [kaccount, setKaccount] = useState(null);
     const router = useRouter();
     useEffect(() => {
         const code = new URL(window.location.href).searchParams.get('code');
 
         const fetchToken = async () => {
-            const token = await getToken(code);
-            setToken(token);
-            if (token) {
+            const kakaoAccount = await getKakaoAccount(code);
+            setKaccount(kakaoAccount);
+            if (kakaoAccount) {
+                //체크 로직 (loginUser.email == kakaoAccount.email)체크 후 맞으면 통과
                 router.push('/select');
             }
         };
-
         fetchToken();
     }, []);
 
     return (
         <div>
           <h1>Redirecting...</h1>
-          {token && <p>Token: {token}</p>}
+          {kaccount && <p>kaccount nickname: {kaccount.email}</p>}
         </div>
     );
 };
 
 export default RedirectPage;
 
-const getToken = async (code: string | null) => {
+const getKakaoAccount = async (code: string | null) => {
     try {
         const {
             data: { access_token },
@@ -49,7 +49,17 @@ const getToken = async (code: string | null) => {
                 client_secret: KAKAO_CLIENT_SECRET,
             },
         });
-        return access_token;
+        if (access_token) {
+            const {
+                data: {kakao_account}
+            } =  await axios
+            .get(`https://kapi.kakao.com/v2/user/me`, {
+                headers: {
+                    Authorization: `Bearer ${access_token},`
+                },
+            })
+            return kakao_account;
+        }
     } catch (e) {
         console.error(e);
     }
