@@ -3,19 +3,32 @@ import { useEffect, useState } from "react";
 type Props = {
   timeLeft: string;
   timePercent: number;
-  timeYear: number
+  timeYear: number;
+  isEndVote: boolean;
 }
 
-export function useDday(endDateStr: string, startDateStr?: string): Props {
+/**
+ * date : yyyy-mm-dd
+ * @param startGameDate ( 투표 시작 날짜 )
+ * @param startVoteDate ( 경기 시작 날짜 )
+ * @returns {
+ *  timeLeft ( 남은 시간 )
+ *  timePercent ( 남은 시간 퍼센트 )
+ *  timeYear ( 년도표시 )
+ *  isEndVote ( 마감유무 )
+ * }
+ */
+export function useDday(startGameDate: string, startVoteDate?: string): Props {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [timePercent, setTimePercent] = useState<number>(0);
   const [timeYear, setTimeYear] = useState<number>(0);
+  const [isEndVote, setIsEndVote] = useState(false);
 
   useEffect(() => {
     function calculateDday() {
       const now = new Date();
-      const endDate = new Date(`${endDateStr}T23:59:59`);
-      const startDate = startDateStr ? new Date(`${startDateStr}T00:00:00`) : now;
+      const endDate = new Date(`${startGameDate}T23:59:59`);
+      const startDate = startVoteDate ? new Date(`${startVoteDate}T00:00:00`) : now;
 
       const totalDuration = endDate.getTime() - startDate.getTime();
       const remainingTime = endDate.getTime() - now.getTime();
@@ -23,6 +36,7 @@ export function useDday(endDateStr: string, startDateStr?: string): Props {
       if (remainingTime < 0) {
         setTimeLeft("D-Day는 이미 지났습니다.");
         setTimePercent(100); // 종료 날짜에 도달하면 100%
+        setIsEndVote(true);
         return;
       }
 
@@ -46,7 +60,7 @@ export function useDday(endDateStr: string, startDateStr?: string): Props {
     const timer = setInterval(calculateDday, 1000);
 
     return () => clearInterval(timer);
-  }, [endDateStr, startDateStr]);
+  }, [startGameDate, startVoteDate]);
 
-  return { timeLeft, timePercent, timeYear };
+  return { timeLeft, timePercent, timeYear, isEndVote };
 }
