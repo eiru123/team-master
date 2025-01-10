@@ -7,6 +7,7 @@ import NameTag from '@/components/ui/NameTag';
 import Text from '@/components/ui/Text';
 import Image from 'next/image';
 import MemberTag from './_components/MemberTag';
+import { setLocalStorage } from '../../../../utils/handleLocalStorage';
 
 /**
  ** 경기 일정이 없을 경우 화면에 보여질 데이터 ( admin / user 공통 )
@@ -43,17 +44,26 @@ import MemberTag from './_components/MemberTag';
  */
 
 const VotePage = () => {
-  const { timeLeft } = useDday('2025-01-11', '2025-01-05');
+  const { timeLeft, isEndVote } = useDday('2025-01-11', '2025-01-07');
   const [voteStatus, setVoteStatus] = useState('');
-
+  const [isVote, setIsVote] = useState(false);
   // join or skip
   const onClickVote = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { vote } = e.currentTarget.dataset;
     setVoteStatus(vote);
+
+    // 임시 localStorage 저장
+    setLocalStorage('vote', vote);
   };
 
   const onClickSendVote = () => {
-    console.log('투표 결과 제출: ', voteStatus);
+    if (voteStatus === '') return;
+
+    setIsVote(true);
+  };
+
+  const onClickResetVote = () => {
+    setIsVote(false);
   };
 
   return (
@@ -115,34 +125,52 @@ const VotePage = () => {
             ) : null}
           </Text>
 
-          {/* <Image
-            src={'/img/vote/vote-closed.png'}
-            alt="투표 만료 표시"
-            width={200}
-            height={50}
-            className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          /> */}
+          {isVote ? (
+            <>
+              <div className="w-full max-w-96 h-[80px] bg-black opacity-10 z-10 absolute top-0"></div>
+              <Image
+                src={'/img/vote/vote-finish.png'}
+                alt="투표 완료 표시"
+                width={200}
+                height={50}
+                className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              />
+            </>
+          ) : isEndVote ? (
+            <>
+              <div className="w-full max-w-96 h-[80px] bg-black opacity-10 z-10 absolute top-0"></div>
+              <Image
+                src={'/img/vote/vote-closed.png'}
+                alt="투표 만료 표시"
+                width={200}
+                height={50}
+                className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              />
+            </>
+          ) : null}
         </div>
 
-        {/* 투표를 완료 할 때 버튼 */}
-        {/* <Text
-          type="button"
-          onClick={onClickSendVote}
-          color="#fff"
-          className="border my-5 px-4 py-1 rounded-full bg-[#9966cc] active:shadow-inner-button"
-        >
-          제출
-        </Text> */}
-
-        {/* 투표를 했는데 바꾸고 싶을 때 버튼 */}
-        <Text
-          type="button"
-          onClick={onClickSendVote}
-          color="#fff"
-          className="border my-5 px-4 py-1 rounded-full bg-[#385f9b] active:shadow-inner-button"
-        >
-          다시 투표하기
-        </Text>
+        {!isVote ? (
+          // {/* 투표를 완료 할 때 버튼 */}
+          <Text
+            type="button"
+            onClick={onClickSendVote}
+            color="#fff"
+            className="border my-5 px-4 py-1 rounded-full bg-[#9966cc] active:shadow-inner-button"
+          >
+            제출
+          </Text>
+        ) : (
+          // {/* 투표를 했는데 바꾸고 싶을 때 버튼 */}
+          <Text
+            type="button"
+            onClick={onClickResetVote}
+            color="#fff"
+            className="border my-5 px-4 py-1 rounded-full bg-[#385f9b] active:shadow-inner-button"
+          >
+            다시 투표하기
+          </Text>
+        )}
       </div>
 
       {/* [리그전] 참여 인원 정보 ( 팀 이름<grid-cols-${num}> / 해당 팀의 참여 인원 목록) */}
