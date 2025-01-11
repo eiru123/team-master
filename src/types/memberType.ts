@@ -1,17 +1,20 @@
 type MemberStatus = 'normal' | 'dormant' | 'waiting';
+type MemberRole = 'president' | 'member';
 
 type MemberBasicInfo = {
   id: string;
   name: string;
   imageUrl?: string;
-  age?: number;
+  birthDate?: string;
   height?: number;
   weight?: number;
-  position?: string;
+  position?: string[];
   playStyle?: string;
-  number?: number;
+  backNumber?: number;
   description?: string;
   status: MemberStatus;
+  phoneNumber?: string;
+  role: MemberRole;
 };
 
 type MemberGameStats = {
