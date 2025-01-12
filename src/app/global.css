@@ -78,6 +78,10 @@
   font-family: "SUITE";
 }
 
+body {
+  padding-bottom: 30px;
+}
+
 /* Title (h) */
 .title-font {
   /* font-family: title !important; */
