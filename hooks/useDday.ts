@@ -34,7 +34,7 @@ export function useDday(startGameDate: string, startVoteDate?: string): Props {
       const remainingTime = endDate.getTime() - now.getTime();
 
       if (remainingTime < 0) {
-        setTimeLeft("D-Day는 이미 지났습니다.");
+        setTimeLeft("투료 마감!");
         setTimePercent(100); // 종료 날짜에 도달하면 100%
         setIsEndVote(true);
         return;

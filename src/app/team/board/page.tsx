@@ -54,7 +54,7 @@ const TeamMainPage = () => {
   //   router.push(url);
   // };
 
-  const { timePercent, timeLeft, timeYear } = useDday(
+  const { timePercent, timeLeft, timeYear, isEndVote } = useDday(
     '2025-01-10',
     '2025-01-05',
   );
@@ -132,7 +132,11 @@ const TeamMainPage = () => {
 
         {/* 투표하기 */}
         <Text type="a" href="/team/vote">
-          <VoteContainer timePercent={timePercent} timeLeft={timeLeft} />
+          <VoteContainer
+            timePercent={timePercent}
+            timeLeft={timeLeft}
+            isEndVote={isEndVote}
+          />
         </Text>
 
         {/* 멤버리스트 */}

@@ -2,13 +2,15 @@ import React from 'react';
 import './voteContainer.css';
 import NameTag from '@/components/ui/NameTag';
 import Image from 'next/image';
+import Text from '@/components/ui/Text';
 
 type Props = {
   timePercent: number;
   timeLeft: string;
+  isEndVote: boolean;
 };
 
-const VoteContainer = ({ timePercent, timeLeft }: Props) => {
+const VoteContainer = ({ timePercent, timeLeft, isEndVote }: Props) => {
   const percent = Math.floor(timePercent);
 
   // 사용자 팀 컬러 설정
@@ -37,43 +39,52 @@ const VoteContainer = ({ timePercent, timeLeft }: Props) => {
   };
 
   return (
-    <div
-      className="vote-container"
-      style={{ '--percent': percent } as React.CSSProperties}
-    >
-      <div className={`inner-container relative ${userTeamInfo.team}`}>
-        {/* 경기 일정이 없습니다. */}
-        <NameTag type="l-ing" />
+    <>
+      {isEndVote ? (
+        <div className="vote-container h-[100px]">
+          <Text type="p" fw={700}>
+            경기 일정이 없습니다
+          </Text>
+        </div>
+      ) : (
+        <div
+          className="vote-container"
+          style={{ '--percent': percent } as React.CSSProperties}
+        >
+          <div className={`inner-container relative ${userTeamInfo.team}`}>
+            <NameTag type="l-ing" />
 
-        <div className="w-full grid grid-cols-3">
-          <div className="col-span-2">
-            <p
-              className="vote-text text-center"
-              style={{ fontSize: '24px', margin: '8px 0' }}
-            >
-              2025.01.11 (토)
-            </p>
-            <p className="vote-text text-center">{String(timeLeft)}</p>
-          </div>
-          <div
-            className="flex justify-center items-center absolute right-0 top-1/2 transform translate-x-[-5%] translate-y-[-50%] w-[100px] h-[100px] rounded-full "
-            style={
-              userTeamInfo.team === 'team-w'
-                ? { backgroundColor: '#5c5c5c' }
-                : { backgroundColor: '#fff' }
-            }
-          >
-            <Image
-              src={'/img/vote/need-vote.png'}
-              alt="유니폼"
-              width={50}
-              height={80}
-              className="block object-cover"
-            />
+            <div className="w-full grid grid-cols-3">
+              <div className="col-span-2">
+                <p
+                  className="vote-text text-center"
+                  style={{ fontSize: '24px', margin: '8px 0' }}
+                >
+                  2025.01.11 (토)
+                </p>
+                <p className="vote-text text-center">{String(timeLeft)}</p>
+              </div>
+              <div
+                className="flex justify-center items-center absolute right-0 top-1/2 transform translate-x-[-5%] translate-y-[-50%] w-[100px] h-[100px] rounded-full "
+                style={
+                  userTeamInfo.team === 'team-w'
+                    ? { backgroundColor: '#5c5c5c' }
+                    : { backgroundColor: '#fff' }
+                }
+              >
+                <Image
+                  src={'/img/vote/need-vote.png'}
+                  alt="유니폼"
+                  width={50}
+                  height={80}
+                  className="block object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
