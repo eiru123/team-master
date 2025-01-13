@@ -2,17 +2,20 @@ import Text from '@/components/ui/Text';
 import React, { useState } from 'react';
 import Lottie from 'react-lottie-player';
 
+/**
+ * 서버에서 받는 값
+ * [2파전]: 블랙 vs 화이트
+ * [3파전]: 블랙 vs 화이트 vs 퍼플
+ * - 3파전의 경우 팀이름까지
+ *
+ * 저장할 값
+ *
+ */
+
 const GameSetting = ({ teamList }) => {
   // 구성할 화이트보드 데이터
-  const [gamePlan, setGamePlan] = useState([
-    {
-      order: 1,
-      home: '',
-      away: '',
-      homeScore: '',
-      awayScore: '',
-    },
-  ]);
+  const [gamePlan, setGamePlan] = useState([]);
+  const [teamCount, setTeamCount] = useState(0);
   const onClickAddTeam = (
     e: React.MouseEvent<HTMLButtonElement>,
     teamName: string,
@@ -52,100 +55,48 @@ const GameSetting = ({ teamList }) => {
   };
   /**
    * order: 경기 순서
+   * quarter: 쿼터
    * home: 홈팀 이름
    * away: 어웨이팀 이름
    * homeScore: 홈팀 점수
    * awayScore: 어웨이팀 점수
    */
 
+  // 설정할 팀 수
+  const handleTeamSetting = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { teamcount } = e.currentTarget.dataset;
+    setTeamCount(Number(teamcount));
+  };
+
   return (
     <>
-      <Text type="p" fz={24} className="font-moneygraphy text-center">
-        1경기
-      </Text>
-      <div className="grid grid-cols-2 gap-2">
-        {/* 왼쪽 버튼 그룹 */}
-        <div className="grid grid-cols-1 gap-1">
-          <Text type="p" className="text-center font-moneygraphy mt-1">
-            HOME
-          </Text>
-          {teamList.map((team) => (
-            <button
-              data-team-group="home"
-              key={`home-${team.name}`}
-              onClick={(e) => onClickAddTeam(e, team.name)}
-              disabled={isTeamDisabled(team.name, 'home')}
-              className={`border rounded-sm p-2 w-full flex justify-between items-center h-[50px] bg-gray-300 text-[#191919]
-              } ${isTeamDisabled(team.name, 'home') ? 'opacity-50 cursor-not-allowed' : ''}`}
-              style={{
-                backgroundColor:
-                  gamePlan[0].home === team.name ? team.teamColor : '#D1D5DB',
-                color:
-                  gamePlan[0].home === ''
-                    ? '#191919'
-                    : gamePlan[0].home === team.name &&
-                        team.teamColor === '#fff'
-                      ? '#191919'
-                      : '#fff',
-              }}
-            >
-              {team.name}
-              {gamePlan[0].home === team.name && (
-                <div className="relative w-[30px] h-[30px] overflow-hidden">
-                  <Lottie
-                    loop={false}
-                    path="/img/lottie/checkLottie.json"
-                    play
-                    style={{ width: 100, height: 100 }}
-                    className="absolute -top-9 -left-9"
-                  />
-                </div>
-              )}
-            </button>
-          ))}
-        </div>
+      <Text type="p">경기 기본 설정</Text>
 
-        {/* 오른쪽 버튼 그룹 */}
-        <div className="grid grid-cols-1 gap-1">
-          <Text type="p" className="text-center font-moneygraphy mt-1">
-            AWAY
-          </Text>
-          {teamList.map((team) => (
-            <button
-              data-team-group="away"
-              key={`away-${team.name}`}
-              onClick={(e) => onClickAddTeam(e, team.name)}
-              disabled={isTeamDisabled(team.name, 'away')}
-              className={`border rounded-sm p-2 w-full flex justify-between items-center h-[50px] bg-gray-300 text-[#191919]
-              } ${isTeamDisabled(team.name, 'away') ? 'opacity-50 cursor-not-allowed' : ''}`}
-              style={{
-                backgroundColor:
-                  gamePlan[0].away === team.name ? team.teamColor : '#D1D5DB',
-                color:
-                  gamePlan[0].away === ''
-                    ? '#191919'
-                    : gamePlan[0].away === team.name &&
-                        team.teamColor === '#fff'
-                      ? '#191919'
-                      : '#fff',
-              }}
-            >
-              {team.name}
-              {gamePlan[0].away === team.name && (
-                <div className="relative w-[30px] h-[30px] overflow-hidden">
-                  <Lottie
-                    loop={false}
-                    path="/img/lottie/checkLottie.json"
-                    play
-                    style={{ width: 100, height: 100 }}
-                    className="absolute -top-9 -left-9"
-                  />
-                </div>
-              )}
-            </button>
-          ))}
-        </div>
+      <div>
+        <Text type="p">경기 팀 수</Text>
+
+        <label>
+          <Text type="span">2파전</Text>
+          <input
+            type="radio"
+            name="teamCount"
+            data-teamcount={2}
+            onChange={handleTeamSetting}
+          />
+        </label>
+        <label>
+          <Text type="span">3파전</Text>
+          <input
+            type="radio"
+            name="teamCount"
+            data-teamcount={3}
+            onChange={handleTeamSetting}
+          />
+        </label>
       </div>
+
+      {Number(teamCount) === 2 ? <p>2파전 용</p> : null}
+      {Number(teamCount) === 3 ? <p>3파전 용</p> : null}
     </>
   );
 };

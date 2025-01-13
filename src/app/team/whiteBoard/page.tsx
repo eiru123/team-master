@@ -10,10 +10,6 @@ import GameSetting from './_components/gameSetting';
  * 3. 경기 날짜 아닐때 페이지 접속시 화이트보드는 이전 경기 스코어
  */
 const WhiteBoard = () => {
-  const onClickAdd = () => {
-    console.log('추가');
-  };
-
   // 경기 날짜
   const gamePlan = '2025.01.05';
 
@@ -56,17 +52,6 @@ const WhiteBoard = () => {
         {/* 1. 경기 설정 */}
         <div id="gameList">
           <GameSetting teamList={teamList} />
-        </div>
-
-        <div className="w-full flex justify-center my-4">
-          <Text
-            type="button"
-            padding="1px 16px"
-            classname="border-2 rounded-md border-[#191919] active:bg-gray-300 active:scale-95"
-            onClick={onClickAdd}
-          >
-            +
-          </Text>
         </div>
       </div>
     </>
