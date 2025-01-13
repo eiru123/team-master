@@ -5,14 +5,14 @@ import {
   AccordionTrigger,
 } from '../ui/accordion';
 
-type PlayerProps = {
+interface PlayerProps {
   player: {
     id: number;
     name: string;
     age: number;
     height: number;
   };
-};
+}
 
 export default function Player({ player }: PlayerProps) {
   return (
