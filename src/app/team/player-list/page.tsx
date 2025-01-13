@@ -1,9 +1,9 @@
-import PlayerList from '@/components/team/PlayerList';
+import MemberList from '@/components/team/MemberList';
 
 export default function PlayerListPage() {
   return (
     <div>
-      <PlayerList />
+      <MemberList />
     </div>
   );
 }
