@@ -4,7 +4,7 @@ import Member from './Member';
 
 export default function MemberList() {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="multiple" className="w-full">
       {MEMBER_LIST.map((member) => {
         return <Member key={member.id} member={member} />;
       })}

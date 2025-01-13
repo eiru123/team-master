@@ -1,6 +1,6 @@
 import MemberList from '@/components/team/MemberList';
 
-export default function PlayerListPage() {
+export default function MemberListPage() {
   return (
     <div>
       <MemberList />
