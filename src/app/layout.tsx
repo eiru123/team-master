@@ -1,6 +1,7 @@
 import './global.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Container from '@/components/ui/Container';
 
 export const metadata = {
   title: 'Welcome to team-master-front',
@@ -14,7 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <Container display="block" className="py-4 px-8">
+          {children}
+        </Container>
+      </body>
     </html>
   );
 }

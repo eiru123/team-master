@@ -4,7 +4,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '1',
     name: '김남권',
-    imageUrl: 'https://example.com/avatar1.jpg',
+    imageUrl: 'https://robohash.org/김남권',
     birthDate: '1993-05-15',
     height: 182,
     weight: 78,
@@ -24,7 +24,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '2',
     name: '이승',
-    imageUrl: 'https://example.com/avatar2.jpg',
+    imageUrl: 'https://robohash.org/이승',
     birthDate: '1992-03-20',
     height: 179,
     weight: 73,
@@ -43,7 +43,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '3',
     name: '이상엽',
-    imageUrl: 'https://example.com/avatar3.jpg',
+    imageUrl: 'https://robohash.org/이상엽',
     birthDate: '1991-08-10',
     height: 187,
     weight: 85,
@@ -60,7 +60,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '4',
     name: '박준서',
-    imageUrl: 'https://example.com/avatar4.jpg',
+    imageUrl: 'https://robohash.org/박준서',
     birthDate: '1992-11-25',
     height: 185,
     weight: 80,
@@ -77,7 +77,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '5',
     name: '최도현',
-    imageUrl: 'https://example.com/avatar5.jpg',
+    imageUrl: 'https://robohash.org/최도현',
     birthDate: '1993-07-30',
     height: 183,
     weight: 76,
@@ -94,7 +94,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '6',
     name: '정민우',
-    imageUrl: 'https://example.com/avatar6.jpg',
+    imageUrl: 'https://robohash.org/정민우',
     birthDate: '1991-04-12',
     height: 181,
     weight: 75,
@@ -111,7 +111,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '7',
     name: '김태훈',
-    imageUrl: 'https://example.com/avatar7.jpg',
+    imageUrl: 'https://robohash.org/김태훈',
     birthDate: '1994-09-18',
     height: 189,
     weight: 88,
@@ -130,7 +130,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '8',
     name: '이동훈',
-    imageUrl: 'https://example.com/avatar8.jpg',
+    imageUrl: 'https://robohash.org/이동훈',
     birthDate: '1995-01-05',
     height: 178,
     weight: 72,
@@ -146,7 +146,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '9',
     name: '강현우',
-    imageUrl: 'https://example.com/avatar9.jpg',
+    imageUrl: 'https://robohash.org/강현우',
     birthDate: '1993-12-28',
     height: 184,
     weight: 79,
@@ -163,7 +163,7 @@ export const MEMBER_LIST: Member[] = [
   {
     id: '10',
     name: '손영준',
-    imageUrl: 'https://example.com/avatar10.jpg',
+    imageUrl: 'https://robohash.org/손영준',
     birthDate: '1992-06-15',
     height: 186,
     weight: 82,
