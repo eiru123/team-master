@@ -63,7 +63,7 @@ const Navigation = () => {
           fz={10}
           onClick={onLinkPage}
           data-btn-id="btn1"
-          className="flex justify-center items-center"
+          className="flex justify-center items-center border-t-[1px]"
           color={handleBtnColor('btn1')}
         >
           버튼1
@@ -73,14 +73,14 @@ const Navigation = () => {
           fz={10}
           onClick={onLinkPage}
           data-btn-id="btn2"
-          className="flex justify-center items-center"
+          className="flex justify-center items-center border-t-[1px]"
           color={handleBtnColor('btn2')}
         >
           버튼2
         </Text>
 
         <div className="relative">
-          <div className="absolute top-[-25px] left-1/2 transform -translate-x-1/2 w-[70px] h-[70px] bg-main rounded-full"></div>
+          <div className="absolute top-[-25px] left-1/2 transform -translate-x-1/2 w-[70px] h-[70px] bg-main rounded-full border-[1px]"></div>
         </div>
 
         {/* 화이트보드 */}
@@ -89,7 +89,7 @@ const Navigation = () => {
           fz={10}
           onClick={onLinkPage}
           data-btn-id="btn3"
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col justify-center items-center border-t-[1px]"
         >
           <ScroeBoardSvg
             width={30}
@@ -107,7 +107,7 @@ const Navigation = () => {
           fz={10}
           onClick={onLinkPage}
           data-btn-id="btn4"
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col justify-center items-center border-t-[1px]"
         >
           <SettingSvg width={30} height={30} color={handleBtnColor('btn4')} />
           <Text type="span" fz={10} color={handleBtnColor('btn4')}>
