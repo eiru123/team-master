@@ -87,7 +87,7 @@ const TeamMainPage = () => {
     <Loading type="img" />
   ) : (
     <>
-      <Container display="block">
+      <Container display="block" className="mb-10">
         <TopBar depth={0} title="SIXERS" />
         {/* <!-- 상단 공지사항 --> */}
         <Wrapper>
