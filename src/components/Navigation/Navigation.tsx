@@ -79,7 +79,7 @@ const Navigation = () => {
           버튼2
         </Text>
 
-        <div className="relative">
+        <div className="relative border-t-[1px]">
           <div className="absolute top-[-25px] left-1/2 transform -translate-x-1/2 w-[70px] h-[70px] bg-main rounded-full border-[1px]"></div>
         </div>
 
