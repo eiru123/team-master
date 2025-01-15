@@ -1,5 +1,4 @@
 import React from 'react';
-import ToggleMenuBtn from './ui/button/ToggleMenu';
 import GoBackBtn from './ui/button/BackBtn';
 import CloseBtn from './ui/button/CloseBtn';
 import Wrapper from './ui/Wrapper';
@@ -18,7 +17,6 @@ const TopBar = ({ depth, title }: Props) => {
           <Title type="main" classnames="font-jua">
             {title}
           </Title>
-          <ToggleMenuBtn />
         </Wrapper>
       );
 
@@ -29,9 +27,6 @@ const TopBar = ({ depth, title }: Props) => {
           <GoBackBtn />
 
           <Title type="sub">{title}</Title>
-
-          {/* 메뉴 */}
-          <ToggleMenuBtn />
         </Wrapper>
       );
 
