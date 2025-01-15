@@ -47,6 +47,10 @@
   font-family: "Jua";
   src: url("/font/Jua-Regular.ttf");
 }
+@font-face {
+  font-family: "Hubballi";
+  src: url("/font/Hubballi-Regular.ttf");
+}
 /* // === font === */
 
 
@@ -76,6 +80,10 @@
 
 * {
   font-family: "SUITE";
+}
+
+body {
+  padding-bottom: 30px;
 }
 
 /* Title (h) */
