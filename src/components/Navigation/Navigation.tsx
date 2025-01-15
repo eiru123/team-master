@@ -66,38 +66,36 @@ const Navigation = () => {
 
     switch (key) {
       case '':
-        setClickBtn('btn1');
-        return;
+        return 'btn1';
       case '':
-        setClickBtn('btn2');
-        return;
+        return 'btn2';
       case 'whiteBoard':
-        setClickBtn('btn3');
-        return;
+        return 'btn3';
       case '':
-        setClickBtn('btn4');
-        return;
+        return 'btn4';
       case 'board':
-        setClickBtn('btn5');
-        return;
+        return 'btn5';
       default:
         return '';
     }
   };
-
-  useEffect(() => {
-    if (pathname) {
-      handlePathname(pathname);
-    }
-  }, [pathname]);
 
   const handleBtnColor = (btnId: BtnType) => {
     return clickBtn === btnId ? COLORS.active : COLORS.inactive;
   };
 
   const onClickResetMenu = () => {
-    setClickBtn('');
+    const newBtn = handlePathname(pathname);
+    console.log(newBtn);
+    setClickBtn(newBtn);
   };
+
+  useEffect(() => {
+    if (pathname) {
+      const newBtn = handlePathname(pathname);
+      setClickBtn(newBtn);
+    }
+  }, [pathname]);
 
   return (
     <>
