@@ -1,9 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import TopBar from '@/components/TopGnb';
 import Container from '@/components/ui/Container';
-import Wrapper from '@/components/ui/Wrapper';
 import Text from '@/components/ui/Text';
 import Loading from '@/components/Loading';
 import { useDday } from '../../../../hooks/useDday';
@@ -11,6 +9,7 @@ import MemberList from './_components/MemberList';
 import LeagueInfo from './_components/LeagueInfo';
 import { useEffect, useState } from 'react';
 import VoteContainer from './_components/VoteContainer';
+import NoticeContainer from './_components/NoticeContainer';
 
 type Teams = {
   name: string;
@@ -90,45 +89,7 @@ const TeamMainPage = () => {
       <Container display="block" className="mb-10">
         <TopBar depth={0} title="SIXERS" />
         {/* <!-- 상단 공지사항 --> */}
-        <Wrapper>
-          <Link href="/notice" className="flex justify-between items-center">
-            <div className=" text-center flex flex-wrap">
-              <Text type="span" fz={12}>
-                공지
-              </Text>
-              <Text type="span" fz={12}>
-                사항
-              </Text>
-            </div>
-            <div className=" flex items-center">
-              {/* 글을 올린 날짜 === 현재 날짜 시에만 표시 */}
-              <Text
-                type="p"
-                classname=" text-xs bg-sky-400 text-white rounded-sm p-0.5 pl-1"
-              >
-                N
-              </Text>
-
-              {/* 가장 최신글 1개 노출 */}
-              <Text
-                type="p"
-                fz={14}
-                fw={700}
-                classname=" text-start ml-1 mr-1 text-ellipsis line-clamp-1"
-              >
-                식서스의 공지사항입니다. 꼭 읽어주세요
-              </Text>
-            </div>
-            <div className="text-center">
-              <Text type="span" fz={12}>
-                2024{' '}
-              </Text>
-              <Text type="span" fz={12}>
-                03.08
-              </Text>
-            </div>
-          </Link>
-        </Wrapper>
+        <NoticeContainer />
 
         {/* 투표하기 */}
         <Text type="a" href="/team/vote">
