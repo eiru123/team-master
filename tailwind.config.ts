@@ -14,9 +14,11 @@ const config: Config = {
         jua: ['Jua', 'sans-serif'],
         seoleim: ['SEOLEIMcool', 'sans-serif'],
         hubballi: ['Hubballi', 'sans-serif'],
+        DNFBitBitv2: ['DNFBitBitv2', 'sans-serif'],
       },
       boxShadow: {
         'inner-custom': '0 0 3px 3px #513FA1',
+        'inner-button': 'inset 0 4px 6px rgba(0, 0, 0, 0.2)',
       },
       colors: {
         main: '#F5F7FF',
@@ -84,6 +86,11 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        stampEffect: {
+          '0%': { transform: 'scale(2)', opacity: '0' },
+          '50%': { transform: 'scale(1.2)', opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
       },
       animation: {
         moveTop: 'goTop 1s ease-in-out forwards',
@@ -91,6 +98,7 @@ const config: Config = {
         fadeOut: 'fadeOut .5s ease-in-out forwards',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        stamp: 'stampEffect 0.5s ease-out',
       },
       transformOrigin: {
         transform: 'translate(-50%, -50%)',

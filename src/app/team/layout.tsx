@@ -1,3 +1,4 @@
+import DimmedWrapper from '@/components/DimmedWrapper';
 import Navigation from '@/components/Navigation/Navigation';
 import React from 'react';
 
@@ -8,6 +9,7 @@ type Props = {
 const layout = ({ children }: Props) => {
   return (
     <>
+      <DimmedWrapper />
       {children}
       <Navigation />
     </>
