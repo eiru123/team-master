@@ -53,10 +53,7 @@ const TeamMainPage = () => {
   //   router.push(url);
   // };
 
-  const { timePercent, timeLeft, timeYear, isEndVote } = useDday(
-    '2025-01-10',
-    '2025-01-05',
-  );
+  const { timePercent, timeLeft, timeYear, isEndVote } = useDday('2025-01-18');
   const [season, setSeason] = useState<string>('1');
   const [teamList, setTeamList] = useState<Teams[]>([]);
 
