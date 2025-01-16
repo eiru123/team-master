@@ -18,6 +18,8 @@ type Props = {
  *  isEndVote ( 마감유무 )
  * }
  */
+
+// TODO: useDday hooks에서 빈값을 보내면 기본적인 시간정보만 가지고 올 수 있게 변경해야함
 export function useDday(startGameDate: string, startVoteDate?: string): Props {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [timePercent, setTimePercent] = useState<number>(0);
