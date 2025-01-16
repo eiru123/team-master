@@ -3,48 +3,121 @@ import './memberList.css';
 import Text from '@/components/ui/Text';
 import Slider from 'react-slick';
 import Image from 'next/image';
+import mainSliderSettings from '@/config/reactSlick-settings';
 
 const MemberList = () => {
   const members = [
-    { src: '/img/test-people.png', name: '심상민', position: 'F', reward: 0 },
-    { src: '/img/test-people.png', name: '조성은', position: 'G', reward: 1 },
-    { src: '/img/test-people.png', name: '이상엽', position: 'C', reward: 2 },
+    {
+      src: '/img/test/test-member.jpg',
+      name: '박보영',
+      position: '가드',
+      nickname: 'bo-young',
+      backnumber: 24,
+      reward: 0,
+      mvp: 0,
+    },
+    {
+      src: '/img/test/test-profile.jpg',
+      name: '보영씨',
+      position: '가드',
+      nickname: 'boo-young',
+      backnumber: 24,
+      reward: 1,
+      mvp: 1,
+    },
+    {
+      src: '/img/test/test-member4.jpg',
+      name: '보영님',
+      position: '가드',
+      nickname: 'boo-boo',
+      backnumber: 10,
+      reward: 2,
+      mvp: 2,
+    },
+    {
+      src: '/img/test/test-member2.jpg',
+      name: '안유진',
+      position: '포워드',
+      nickname: 'u-jin',
+      backnumber: 10,
+      reward: 3,
+      mvp: 3,
+    },
+    {
+      src: '/img/test/test-profile2.jpg',
+      name: '유진',
+      position: '포워드',
+      nickname: 'u-jiiin',
+      backnumber: 10,
+      reward: 4,
+      mvp: 4,
+    },
+    {
+      src: '/img/test/test-member3.jpg',
+      profile: '/img/test/test-profile.jpg',
+      name: '요키치',
+      position: '센터',
+      nickname: 'Jokic',
+      backnumber: 15,
+      reward: 5,
+      mvp: 5,
+    },
   ];
 
-  const settings = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    centerMode: true,
-    centerPadding: '20px',
+  // TODO: 팀/멤버 소개 페이지 링크로 연결
+  const onClickGoPage = () => {
+    console.log('팀/멤버 소개 페이지로 이동');
   };
 
   return (
     <>
-      <Text type="p" fz={18} fw={700} classname=" text-center">
-        = SIXERS MEMBERS =
-      </Text>
+      <div className="flex items-center justify-between">
+        <Text type="p" fz={18} fw={700} classname="">
+          우리 팀을 소개합니다.
+        </Text>
+        <Text fz={12} type="button" onClick={onClickGoPage}>
+          더보기
+        </Text>
+      </div>
       <div className="teams-container">
-        <Slider {...settings}>
+        <Slider {...mainSliderSettings}>
           {members.map((item) => (
-            <div className="slide px-1" key={item.name}>
-              <div className="member rounded-lg bg-[#eae8ff] px-4 py-2">
-                {/* 인물 사진 */}
-                <div className="img-box max-w-[120px] max-h-[130px]">
-                  <Image
-                    src={item.src}
-                    alt="프로필사진"
-                    width={150}
-                    height={150}
-                  />
-                </div>
-                {/* 인물 정보 */}
-                <div className="member-info">
-                  <Text type="p">이름: {item.name}</Text>
-                  <Text type="p">포지션: {item.position}</Text>
-                  <Text type="p">{item.reward}</Text>
-                </div>
+            <div
+              className="slide shadow-sm h-[150px] relative rounded-md overflow-hidden"
+              key={item.name}
+            >
+              <div className="absolute inset-0 bg-black opacity-30 z-10"></div>
+              <Image
+                src={item.src}
+                alt="배경프로필사진"
+                fill
+                unoptimized
+                className=" object-cover z-0"
+                style={{ objectPosition: '10% 40%' }}
+              />
+
+              <div className="flex flex-col justify-center items-center absolute top-2 left-4 z-20">
+                <Text
+                  fz={32}
+                  type="p"
+                  color="white"
+                  className=" font-DNFBitBitv2"
+                >
+                  {item.name}
+                </Text>
+                <div className="w-2/3 h-1 bg-white"></div>
+              </div>
+
+              <div className="flex items-center gap-2 absolute bottom-2 right-4 z-20">
+                <Text type="span" fz={12} color="white">
+                  #{item.position}
+                </Text>
+                <Text type="span" fz={12} color="white">
+                  #{item.nickname}
+                </Text>
+                <Text type="span" fz={12} color="white">
+                  #No.{item.backnumber}
+                </Text>
               </div>
             </div>
           ))}
