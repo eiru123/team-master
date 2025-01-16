@@ -1,8 +1,5 @@
 .teams-container {
-  width: 90%;
   margin: 12px auto;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #5c665f;
 }
 
 .slide {
@@ -32,4 +29,8 @@
   justify-content: center;
   align-items: start;
   gap: 8px;
+}
+
+.slick-slide {
+  padding: 0 4px;
 }
