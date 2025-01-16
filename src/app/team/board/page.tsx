@@ -1,21 +1,21 @@
 'use client';
 
-import Link from 'next/link';
 import TopBar from '@/components/TopGnb';
-import Container from '@/components/ui/Container';
-import Wrapper from '@/components/ui/Wrapper';
 import Text from '@/components/ui/Text';
-import Loading from '@/components/Loading';
 import { useDday } from '../../../../hooks/useDday';
 import MemberList from './_components/MemberList';
 import LeagueInfo from './_components/LeagueInfo';
 import { useEffect, useState } from 'react';
 import VoteContainer from './_components/VoteContainer';
+import NoticeContainer from './_components/NoticeContainer';
+import Wrapper from '@/components/ui/Wrapper';
+import Container from '@/components/ui/Container';
 
 type Teams = {
   name: string;
   score: string;
   rate: number;
+  src: string;
 };
 
 const TeamMainPage = () => {
@@ -46,7 +46,6 @@ const TeamMainPage = () => {
   //     setIsLoading(false);
   //   }, 1000);
   // }, []);
-  const isLoading = false;
 
   // const router = useRouter();
 
@@ -54,10 +53,7 @@ const TeamMainPage = () => {
   //   router.push(url);
   // };
 
-  const { timePercent, timeLeft, timeYear } = useDday(
-    '2025-01-10',
-    '2025-01-05',
-  );
+  const { timePercent, timeLeft, timeYear, isEndVote } = useDday('2025-01-18');
   const [season, setSeason] = useState<string>('1');
   const [teamList, setTeamList] = useState<Teams[]>([]);
 
@@ -69,72 +65,43 @@ const TeamMainPage = () => {
         name: '런앤건',
         score: '4승',
         rate: 1,
+        src: '/img/test/test-team3.png',
       },
       {
         name: '캐치! 감마핑',
-        score: '3승 1패',
-        rate: 2,
+        score: '2승 2패',
+        rate: 3,
+        src: '/img/test/test-team2.png',
       },
       {
         name: '출석체크',
-        score: '2승 2패',
-        rate: 3,
+        score: '3승 1패',
+        rate: 2,
+        src: '/img/test/test-team1.png',
       },
     ]);
   }, []);
 
-  return isLoading ? (
-    <Loading type="img" />
-  ) : (
+  return (
     <>
       <Container display="block">
         <TopBar depth={0} title="SIXERS" />
         {/* <!-- 상단 공지사항 --> */}
-        <Wrapper>
-          <Link href="/notice" className="flex justify-between items-center">
-            <div className=" text-center flex flex-wrap">
-              <Text type="span" fz={12}>
-                공지
-              </Text>
-              <Text type="span" fz={12}>
-                사항
-              </Text>
-            </div>
-            <div className=" flex items-center">
-              {/* 글을 올린 날짜 === 현재 날짜 시에만 표시 */}
-              <Text
-                type="p"
-                classname=" text-xs bg-sky-400 text-white rounded-sm p-0.5 pl-1"
-              >
-                N
-              </Text>
-
-              {/* 가장 최신글 1개 노출 */}
-              <Text
-                type="p"
-                fz={14}
-                fw={700}
-                classname=" text-start ml-1 mr-1 text-ellipsis line-clamp-1"
-              >
-                식서스의 공지사항입니다. 꼭 읽어주세요
-              </Text>
-            </div>
-            <div className="text-center">
-              <Text type="span" fz={12}>
-                2024{' '}
-              </Text>
-              <Text type="span" fz={12}>
-                03.08
-              </Text>
-            </div>
-          </Link>
-        </Wrapper>
+        <NoticeContainer />
 
         {/* 투표하기 */}
-        <VoteContainer timePercent={timePercent} timeLeft={timeLeft} />
+        <Text type="a" href="/team/vote">
+          <VoteContainer
+            timePercent={timePercent}
+            timeLeft={timeLeft}
+            isEndVote={isEndVote}
+          />
+        </Text>
 
         {/* 멤버리스트 */}
-        <MemberList />
+        <Wrapper>
+          <MemberList />
+        </Wrapper>
 
         {/* 리그전 기록 */}
         <LeagueInfo year={timeYear} season={season} teamList={teamList} />
@@ -142,8 +109,6 @@ const TeamMainPage = () => {
         {/* 광고 */}
         {/* <div className="adfit" style={{ margin: '10px 0' }}></div> */}
       </Container>
-
-      {/* 토글 메뉴 */}
     </>
   );
 };

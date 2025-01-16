@@ -1,16 +1,15 @@
 import React from 'react';
-import ToggleMenuBtn from './ui/button/ToggleMenu';
 import GoBackBtn from './ui/button/BackBtn';
 import CloseBtn from './ui/button/CloseBtn';
 import Wrapper from './ui/Wrapper';
 import Title from './ui/Title';
 
-interface TopBarProps {
+type Props = {
   depth: 0 | 1 | 2 | 3;
   title: string;
-}
+};
 
-const TopBar = ({ depth, title }: TopBarProps) => {
+const TopBar = ({ depth, title }: Props) => {
   switch (depth) {
     case 0:
       return (
@@ -18,7 +17,6 @@ const TopBar = ({ depth, title }: TopBarProps) => {
           <Title type="main" classnames="font-jua">
             {title}
           </Title>
-          <ToggleMenuBtn />
         </Wrapper>
       );
 
@@ -29,9 +27,6 @@ const TopBar = ({ depth, title }: TopBarProps) => {
           <GoBackBtn />
 
           <Title type="sub">{title}</Title>
-
-          {/* 메뉴 */}
-          <ToggleMenuBtn />
         </Wrapper>
       );
 

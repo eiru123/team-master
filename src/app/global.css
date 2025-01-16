@@ -53,35 +53,26 @@
   font-family: "Jua";
   src: url("/font/Jua-Regular.ttf");
 }
+@font-face {
+  font-family: "Hubballi";
+  src: url("/font/Hubballi-Regular.ttf");
+}
+@font-face {
+  font-family: "DNFBitBitv2";
+  src: url("/font/DNFBitBitv2.ttf");
+}
+
 /* // === font === */
-
-
-/* @font-face {
-  font-family: 'title';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* 네이버 나눔 스퀘어 라운드: text */
-/* @font-face {
-  font-family: 'text';
-  src: url('/font/NanumSquareRoundR.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* G마켓 산스(m): mini-title */
-/* @font-face {
-  font-family: 'mini';
-  src: url('/font/GmarketSansTTFMedium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-} */
 
 * {
   font-family: "SUITE";
+}
+
+body {
+  padding-bottom: 30px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 /* Title (h) */
