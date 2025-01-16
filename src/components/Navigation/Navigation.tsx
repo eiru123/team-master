@@ -99,7 +99,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="w-screen h-[70px] fixed bottom-0 shadow-lg">
+      <div className="w-screen max-w-[500px] h-[70px] fixed bottom-0 left-1/2 transfrom -translate-x-1/2 shadow-lg">
         <div className="overflow-hidden relative w-full h-full bg-[#0E2240] grid grid-cols-5">
           <Text
             type="button"
