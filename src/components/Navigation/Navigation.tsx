@@ -99,8 +99,8 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="w-screen h-[70px] fixed bottom-0 shadow-lg">
-        <div className="overflow-hidden relative w-full h-full bg-[#5E4CCF] grid grid-cols-5">
+      <div className="w-screen max-w-[500px] h-[70px] fixed bottom-0 left-1/2 transfrom -translate-x-1/2 shadow-lg">
+        <div className="overflow-hidden relative w-full h-full bg-[#0E2240] grid grid-cols-5">
           <Text
             type="button"
             fz={10}
@@ -188,7 +188,7 @@ const Navigation = () => {
                 type="span"
                 fz={14}
                 fw={700}
-                color="#5E4CCF"
+                color="#0E2240"
                 className="font-hubballi"
               >
                 H
@@ -197,7 +197,7 @@ const Navigation = () => {
                 type="span"
                 fz={14}
                 fw={700}
-                color="#5E4CCF"
+                color="#0E2240"
                 className="font-hubballi"
               >
                 O
@@ -206,7 +206,7 @@ const Navigation = () => {
                 type="span"
                 fz={14}
                 fw={700}
-                color="#5E4CCF"
+                color="#0E2240"
                 className="font-hubballi"
               >
                 M
@@ -215,13 +215,13 @@ const Navigation = () => {
                 type="span"
                 fz={14}
                 fw={700}
-                color="#5E4CCF"
+                color="#0E2240"
                 className="font-hubballi"
               >
                 E
               </Text>
             </span>
-            <BasketballSvg width={25} height={25} color="#5E4CCF" />
+            <BasketballSvg width={25} height={25} color="#0E2240" />
           </Text>
         </div>
       </div>
