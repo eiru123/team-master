@@ -22,6 +22,7 @@ const makeData = ({ birthDate, attendance, win, totalGame }: MemberType) => {
   return { age, attendanceRate, winRate };
 };
 
+// 데이터를 가지고 오는 layer -> 데이터를 가공 -> 상태로 저장해서 사용
 export default function Member({ member }: MemberProps) {
   const { age, attendanceRate, winRate } = makeData(member);
   return (
