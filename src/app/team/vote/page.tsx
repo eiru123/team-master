@@ -8,6 +8,7 @@ import Text from '@/components/ui/Text';
 import Image from 'next/image';
 import MemberTag from './_components/MemberTag';
 import { setLocalStorage } from '../../../../utils/handleLocalStorage';
+import VoteBasketballSvg from '@/components/ui/svg/VoteBasketballSvg';
 
 /**
  ** 경기 일정이 없을 경우 화면에 보여질 데이터 ( admin / user 공통 )
@@ -95,13 +96,9 @@ const VotePage = () => {
           >
             <Text type="span">참</Text>
             {voteStatus === 'join' ? (
-              <Image
-                src={'/img/vote/stamp.png'}
-                alt="투표 도장"
-                width={40}
-                height={40}
-                className=" absolute bottom-5 right-5 animate-stamp"
-              />
+              <div className=" absolute bottom-5 right-5 animate-stamp">
+                <VoteBasketballSvg width={40} height={40} useYn={true} />
+              </div>
             ) : null}
           </button>
 
@@ -111,13 +108,9 @@ const VotePage = () => {
           >
             <Text type="span">불참</Text>
             {voteStatus === 'skip' ? (
-              <Image
-                src={'/img/vote/stamp.png'}
-                alt="투표 도장"
-                width={40}
-                height={40}
-                className=" absolute bottom-5 right-5 animate-stamp"
-              />
+              <div className=" absolute bottom-5 right-5 animate-stamp">
+                <VoteBasketballSvg width={40} height={40} useYn={true} />
+              </div>
             ) : null}
           </button>
 
