@@ -1,7 +1,6 @@
 'use client';
 
 import TopBar from '@/components/TopGnb';
-import Text from '@/components/ui/Text';
 import { useDday } from '../../../../hooks/useDday';
 import MemberList from './_components/MemberList';
 import LeagueInfo from './_components/LeagueInfo';
@@ -12,6 +11,15 @@ import Wrapper from '@/components/ui/Wrapper';
 import Container from '@/components/ui/Container';
 
 import teamList from '../../../../public/data/leagueTeam.json';
+import Link from 'next/link';
+import { useSetGameDatas } from '@/store/settingGameData';
+
+type GameData = {
+  gameDate: string;
+  teamNum: string;
+  gameType: string;
+  adminMemo: string;
+};
 
 const TeamMainPage = () => {
   // 카카오 AD-fit
@@ -48,18 +56,16 @@ const TeamMainPage = () => {
   //   router.push(url);
   // };
 
-  type GameData = {
-    gameDate: string;
-    teamNum: string;
-    gameType: string;
-    adminMemo: string;
-  };
-
+  const { gameDatas } = useSetGameDatas();
   const [season, setSeason] = useState<string>('1');
   const [gameData, setGameData] = useState<GameData | null>(null);
   const { timePercent, timeLeft, timeYear, isEndVote } = useDday(
-    gameData?.gameDate || '',
+    gameData?.gameDate,
   );
+
+  const onValidatorLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (gameData === null) e.preventDefault();
+  };
 
   // (임시) 시즌 데이터
   useEffect(() => {
@@ -78,7 +84,7 @@ const TeamMainPage = () => {
 
       onLoadGameData();
     }
-  }, []);
+  }, [gameDatas]);
 
   return (
     <>
@@ -88,13 +94,13 @@ const TeamMainPage = () => {
         <NoticeContainer />
 
         {/* 투표하기 */}
-        <Text type="a" href="/team/vote">
+        <Link href="/team/vote" onClick={onValidatorLink}>
           <VoteContainer
             timePercent={timePercent}
             timeLeft={timeLeft}
             isEndVote={isEndVote}
           />
-        </Text>
+        </Link>
 
         {/* 멤버리스트 */}
         <Wrapper>

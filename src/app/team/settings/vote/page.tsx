@@ -15,6 +15,7 @@ import NameTag from '@/components/ui/NameTag';
 import teamData from '../../../../../public/data/leagueTeam.json';
 import { colorSequence } from '@/config/teamColor-seq';
 import { useRouter } from 'next/navigation';
+import { useSetGameDatas } from '@/store/settingGameData';
 
 /**
  * [화면 구성시 필요한 값]
@@ -38,6 +39,7 @@ type GameType = 'l-free' | 'l-ing' | 'normal' | 'event';
 // TODO: useDday hooks 날짜 관련 hooks로 변경 후 값 수정하ㅣ
 const AdminVoteSetting = () => {
   const router = useRouter();
+  const { setGameDatas } = useSetGameDatas();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(0);
   const [selectedTeamNum, setSelectedTeamNum] = useState(0);
@@ -120,6 +122,7 @@ const AdminVoteSetting = () => {
     console.log('sendData', sendData);
 
     localStorage.setItem('gamePlan', JSON.stringify(sendData));
+    setGameDatas(true);
     router.push('/team/board');
   };
 

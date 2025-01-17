@@ -40,7 +40,7 @@ const VoteContainer = ({ timePercent, timeLeft, isEndVote }: Props) => {
 
   return (
     <>
-      {isEndVote ? (
+      {!isEndVote ? (
         <div className="vote-container h-[100px]">
           <Text type="p" fw={700}>
             경기 일정이 없습니다
