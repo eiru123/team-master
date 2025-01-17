@@ -56,7 +56,7 @@ const Setting = ({ resetBtn }: Props) => {
         className="w-[50px] h-[50px] bg-white rounded-full relative active:bg-red-200 flex flex-col justify-center items-center"
       >
         <Image
-          src={'/img/icon-myInfo.svg'}
+          src={'/img/icon/icon-myInfo.svg'}
           alt="내 정보 페이지"
           width={25}
           height={25}
@@ -94,7 +94,7 @@ const Setting = ({ resetBtn }: Props) => {
         className="w-[50px] h-[50px] bg-white rounded-full relative active:bg-red-200 flex flex-col justify-center items-center"
       >
         <Image
-          src={'/img/icon-vote.svg'}
+          src={'/img/icon/icon-vote.svg'}
           alt="투표설정"
           width={25}
           height={25}
@@ -112,7 +112,7 @@ const Setting = ({ resetBtn }: Props) => {
         className="w-[50px] h-[50px] bg-white rounded-full p-3 relative active:bg-red-200"
       >
         <Image
-          src={'/img/icon-close.svg'}
+          src={'/img/icon/icon-close.svg'}
           alt="닫기버튼"
           width={50}
           height={50}
