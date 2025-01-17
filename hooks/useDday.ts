@@ -5,6 +5,7 @@ type Props = {
   timePercent: number;
   timeYear: number;
   isEndVote: boolean;
+  formatDate: string
 }
 
 /**
@@ -14,6 +15,7 @@ type Props = {
  *  timePercent ( 남은 시간 퍼센트 )
  *  timeYear ( 년도표시 )
  *  isEndVote ( 마감유무 )
+ *  formatDate ( yyyy-mm-dd 형식 )
  * }
  */
 export function useDday(startGameDate: string): Props {
@@ -21,6 +23,7 @@ export function useDday(startGameDate: string): Props {
   const [timePercent, setTimePercent] = useState<number>(0);
   const [timeYear, setTimeYear] = useState<number>(0);
   const [isEndVote, setIsEndVote] = useState(false);
+  const [formatDate ,setFormatDate] = useState('')
 
   useEffect(() => {
     if (!startGameDate) return;
@@ -48,6 +51,7 @@ export function useDday(startGameDate: string): Props {
       const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
       setTimeLeft(`${days}일 ${hours}시간 ${minutes}분 ${seconds}초`);
+      setFormatDate(`${year}-${gameDate.getMonth() + 1}-${gameDate.getDay()}`)
       setTimeYear(year);
 
       const percent =
@@ -63,5 +67,5 @@ export function useDday(startGameDate: string): Props {
     return () => clearInterval(timer);
   }, [startGameDate]);
 
-  return { timeLeft, timePercent, timeYear, isEndVote };
+  return { timeLeft, timePercent, timeYear, isEndVote, formatDate };
 }
