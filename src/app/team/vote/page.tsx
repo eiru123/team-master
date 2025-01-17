@@ -44,16 +44,15 @@ import { setLocalStorage } from '../../../../utils/handleLocalStorage';
  */
 
 const VotePage = () => {
-  const { timeLeft, isEndVote } = useDday('2025-01-11', '2025-01-07');
+  const { timeLeft, isEndVote } = useDday('2025-01-20');
   const [voteStatus, setVoteStatus] = useState('');
   const [isVote, setIsVote] = useState(false);
   // join or skip
-  const onClickVote = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { vote } = e.currentTarget.dataset;
-    setVoteStatus(vote);
+  const onClickVote = (id: string) => {
+    setVoteStatus(id);
 
     // 임시 localStorage 저장
-    setLocalStorage('vote', vote);
+    setLocalStorage('vote', id);
   };
 
   const onClickSendVote = () => {
@@ -90,13 +89,11 @@ const VotePage = () => {
       {/* 투표 날짜가 끝났으면 만료 이미지 + 버튼 비활성화 */}
       <div className="flex flex-col justify-center items-center">
         <div className="grid grid-cols-2 w-[90%] mx-auto relative">
-          <Text
-            type="button"
-            data-vote="join"
-            onClick={onClickVote}
+          <button
+            onClick={() => onClickVote('join')}
             className="border h-20 relative"
           >
-            참
+            <Text type="span">참</Text>
             {voteStatus === 'join' ? (
               <Image
                 src={'/img/vote/stamp.png'}
@@ -106,14 +103,13 @@ const VotePage = () => {
                 className=" absolute bottom-5 right-5 animate-stamp"
               />
             ) : null}
-          </Text>
-          <Text
-            type="button"
-            data-vote="skip"
-            onClick={onClickVote}
+          </button>
+
+          <button
+            onClick={() => onClickVote('skip')}
             className="border h-20 relative"
           >
-            불참
+            <Text type="span">불참</Text>
             {voteStatus === 'skip' ? (
               <Image
                 src={'/img/vote/stamp.png'}
@@ -123,7 +119,7 @@ const VotePage = () => {
                 className=" absolute bottom-5 right-5 animate-stamp"
               />
             ) : null}
-          </Text>
+          </button>
 
           {isVote ? (
             <>
@@ -152,24 +148,24 @@ const VotePage = () => {
 
         {!isVote ? (
           // {/* 투표를 완료 할 때 버튼 */}
-          <Text
-            type="button"
+          <button
             onClick={onClickSendVote}
-            color="#fff"
             className="border my-5 px-4 py-1 rounded-full bg-[#9966cc] active:shadow-inner-button"
           >
-            제출
-          </Text>
+            <Text type="span" color="#fff">
+              제출
+            </Text>
+          </button>
         ) : (
           // {/* 투표를 했는데 바꾸고 싶을 때 버튼 */}
-          <Text
-            type="button"
+          <button
             onClick={onClickResetVote}
-            color="#fff"
             className="border my-5 px-4 py-1 rounded-full bg-[#385f9b] active:shadow-inner-button"
           >
-            다시 투표하기
-          </Text>
+            <Text type="span" color="#fff">
+              다시 투표하기
+            </Text>
+          </button>
         )}
       </div>
 

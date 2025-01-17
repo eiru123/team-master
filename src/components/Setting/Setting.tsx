@@ -47,7 +47,7 @@ const Setting = ({ resetBtn }: Props) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-2 w-[60px] p-2 z-50 absolute bottom-[5px] right-2">
+    <div className="flex flex-col justify-center items-center gap-2 w-[60px] p-2 z-50 fixed bottom-[5px] right-2">
       <Text
         type="button"
         data-id="menu1"

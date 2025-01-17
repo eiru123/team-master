@@ -14,6 +14,7 @@ const config: Config = {
         jua: ['Jua', 'sans-serif'],
         seoleim: ['SEOLEIMcool', 'sans-serif'],
         hubballi: ['Hubballi', 'sans-serif'],
+        DNFBitBitv2: ['DNFBitBitv2', 'sans-serif'],
       },
       boxShadow: {
         'inner-custom': '0 0 3px 3px #513FA1',
