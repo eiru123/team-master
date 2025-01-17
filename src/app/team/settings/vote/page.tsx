@@ -59,13 +59,21 @@ const AdminVoteSetting = () => {
   };
 
   const onClickSelectDate = (day: number) => {
-    setSelectedDate((prev) => (prev === day ? 0 : day));
+    setSelectedDate((prev) => {
+      if (prev === day) {
+        return 0;
+      }
+
+      setCurrentDate(
+        new Date(currentDate.getFullYear(), currentDate.getMonth(), day),
+      );
+      return day;
+    });
     scrollTo({
-      top: 100,
+      top: 200,
       behavior: 'smooth',
     });
   };
-
   const handleSelectTeamNum = (count: number) => {
     setSelectedTeamNum(count);
   };
@@ -116,7 +124,7 @@ const AdminVoteSetting = () => {
   };
 
   return (
-    <div className="h-[765px] relative">
+    <div className="h-[900px] relative">
       <Wrapper>
         <div className="flex items-center justify-center gap-4 mb-5">
           <button onClick={() => changeMonth(-1)}>
