@@ -11,12 +11,7 @@ import NoticeContainer from './_components/NoticeContainer';
 import Wrapper from '@/components/ui/Wrapper';
 import Container from '@/components/ui/Container';
 
-type Teams = {
-  name: string;
-  score: string;
-  rate: number;
-  src: string;
-};
+import teamList from '../../../../public/data/leagueTeam.json';
 
 const TeamMainPage = () => {
   // 카카오 AD-fit
@@ -53,33 +48,36 @@ const TeamMainPage = () => {
   //   router.push(url);
   // };
 
-  const { timePercent, timeLeft, timeYear, isEndVote } = useDday('2025-01-18');
-  const [season, setSeason] = useState<string>('1');
-  const [teamList, setTeamList] = useState<Teams[]>([]);
+  type GameData = {
+    gameDate: string;
+    teamNum: string;
+    gameType: string;
+    adminMemo: string;
+  };
 
-  // 시즌 데이터 (임시)
+  const [season, setSeason] = useState<string>('1');
+  const [gameData, setGameData] = useState<GameData | null>(null);
+  const { timePercent, timeLeft, timeYear, isEndVote } = useDday(
+    gameData?.gameDate || '',
+  );
+
+  // (임시) 시즌 데이터
   useEffect(() => {
     setSeason('4');
-    setTeamList([
-      {
-        name: '런앤건',
-        score: '4승',
-        rate: 1,
-        src: '/img/test/test-team3.png',
-      },
-      {
-        name: '캐치! 감마핑',
-        score: '2승 2패',
-        rate: 3,
-        src: '/img/test/test-team2.png',
-      },
-      {
-        name: '출석체크',
-        score: '3승 1패',
-        rate: 2,
-        src: '/img/test/test-team1.png',
-      },
-    ]);
+  }, []);
+
+  // (임시) 경기 일정 데이터
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const onLoadGameData = () => {
+        const resData = localStorage.getItem('gamePlan');
+        if (resData) {
+          setGameData(JSON.parse(resData));
+        }
+      };
+
+      onLoadGameData();
+    }
   }, []);
 
   return (
