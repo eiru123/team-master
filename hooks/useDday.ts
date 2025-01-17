@@ -8,8 +8,7 @@ type Props = {
 }
 
 /**
- * date : yyyy-mm-dd
- * @param startGameDate ( 경기 시작 날짜 )
+ * @param startGameDate ISO 8601 형식
  * @returns {
  *  timeLeft ( 남은 시간 )
  *  timePercent ( 남은 시간 퍼센트 )
@@ -17,8 +16,6 @@ type Props = {
  *  isEndVote ( 마감유무 )
  * }
  */
-
-// TODO: useDday hooks에서 빈값을 보내면 기본적인 시간정보만 가지고 올 수 있게 변경해야함
 export function useDday(startGameDate: string): Props {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [timePercent, setTimePercent] = useState<number>(0);
@@ -26,9 +23,11 @@ export function useDday(startGameDate: string): Props {
   const [isEndVote, setIsEndVote] = useState(false);
 
   useEffect(() => {
+    if (!startGameDate) return;
+
     function calculateDday() {
       const now = new Date();
-      const gameDate = new Date(`${startGameDate}T00:00:00`);
+      const gameDate = new Date(startGameDate);
       const voteEndDate = new Date(gameDate);
       voteEndDate.setDate(voteEndDate.getDate() - 1);
 
@@ -42,7 +41,7 @@ export function useDday(startGameDate: string): Props {
         return;
       }
 
-      const year = now.getFullYear();
+      const year = gameDate.getFullYear();
       const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
       const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
