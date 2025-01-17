@@ -45,13 +45,16 @@ export function useDday(startGameDate: string): Props {
       }
 
       const year = gameDate.getFullYear();
+      const month = (gameDate.getMonth() + 1).toString().padStart(2, "0");
+      const day = gameDate.getDate().toString().padStart(2, "0");
+
       const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
       const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
       setTimeLeft(`${days}일 ${hours}시간 ${minutes}분 ${seconds}초`);
-      setFormatDate(`${year}-${gameDate.getMonth() + 1}-${gameDate.getDay()}`)
+      setFormatDate(`${year}-${month}-${day}`);
       setTimeYear(year);
 
       const percent =
