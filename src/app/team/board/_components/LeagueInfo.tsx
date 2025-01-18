@@ -60,11 +60,10 @@ const LeagueInfo = ({ season, teamList }: Props) => {
           .sort((a, b) => a.rate - b.rate)
           .map((item) => {
             return (
-              <>
+              <React.Fragment key={item.name}>
                 <div
                   className=" flex flex-col w-full overflow-hidden relative"
                   style={item.rate === 1 ? { height: 230 } : null}
-                  key={item.name}
                 >
                   <div
                     className=" px-4 py-1 flex items-center justify-between"
@@ -95,7 +94,7 @@ const LeagueInfo = ({ season, teamList }: Props) => {
                     />
                   ) : null}
                 </div>
-              </>
+              </React.Fragment>
             );
           })}
       </div>
