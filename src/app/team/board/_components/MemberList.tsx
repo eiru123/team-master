@@ -4,6 +4,7 @@ import Text from '@/components/ui/Text';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import mainSliderSettings from '@/config/reactSlick-settings';
+import Link from 'next/link';
 
 const MemberList = () => {
   const members = [
@@ -64,20 +65,13 @@ const MemberList = () => {
     },
   ];
 
-  // TODO: 팀/멤버 소개 페이지 링크로 연결
-  const onClickGoPage = () => {
-    console.log('팀/멤버 소개 페이지로 이동');
-  };
-
   return (
     <>
       <div className="flex items-center justify-between">
         <Text type="p" fz={18} fw={700} classname="">
           우리 팀을 소개합니다.
         </Text>
-        <Text fz={12} type="button" onClick={onClickGoPage}>
-          더보기
-        </Text>
+        <Link href="/team/member-list">더보기</Link>
       </div>
       <div className="teams-container">
         <Slider {...mainSliderSettings}>
