@@ -1,28 +1,29 @@
 type MemberStatus = 'normal' | 'dormant' | 'waiting';
 type MemberRole = 'president' | 'member';
 
-type MemberBasicInfo = {
+export type Member = {
   id: string;
   name: string;
-  imageUrl?: string;
+  userInfo: MemberUserInfo;
+  position?: string[];
+  playStyle?: string;
+  backNumber?: string;
+  description?: string;
+  status: MemberStatus;
+  role: MemberRole;
+  gameData?: MemberGameStats;
+};
+
+export type MemberUserInfo = {
   birthDate?: string;
   height?: number;
   weight?: number;
-  position?: string[];
-  playStyle?: string;
-  backNumber?: number;
-  description?: string;
-  status: MemberStatus;
+  imageUrl?: string;
   phoneNumber?: string;
-  role: MemberRole;
 };
 
-type MemberGameStats = {
+export type MemberGameStats = {
   win?: number;
-  winRate?: number;
-  totalGame: number;
+  totalGame?: number;
   attendance?: number;
-  attendanceRate?: number;
 };
-
-export type Member = MemberBasicInfo & MemberGameStats;
