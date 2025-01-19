@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../ui/accordion';
-import { Member as MemberType } from '@/types/memberType';
+import { MemberGameStats, Member as MemberType } from '@/types/memberType';
 import Image from 'next/image';
 
 interface MemberProps {
@@ -15,16 +15,21 @@ const makePercent = (value: number) => {
   return `${Math.round(value * 100)}%`;
 };
 
-const makeData = ({ birthDate, attendance, win, totalGame }: MemberType) => {
-  const age = new Date().getFullYear() - new Date(birthDate).getFullYear();
+const getAge = (birthDate: string) => {
+  return new Date().getFullYear() - new Date(birthDate).getFullYear();
+};
+
+const getGameData = ({ attendance, win, totalGame }: MemberGameStats) => {
   const attendanceRate = makePercent(attendance / totalGame);
   const winRate = makePercent(win / totalGame);
-  return { age, attendanceRate, winRate };
+  return { attendanceRate, winRate };
 };
 
 // 데이터를 가지고 오는 layer -> 데이터를 가공 -> 상태로 저장해서 사용
 export default function Member({ member }: MemberProps) {
-  const { age, attendanceRate, winRate } = makeData(member);
+  const { userInfo, gameData } = member;
+  const age = getAge(userInfo.birthDate);
+  const { attendanceRate, winRate } = getGameData(gameData);
   return (
     <AccordionItem value={member.id.toString()}>
       <AccordionHeader>
@@ -34,7 +39,7 @@ export default function Member({ member }: MemberProps) {
         <div className="flex gap-4">
           <div>
             <Image
-              src={member.imageUrl}
+              src={userInfo.imageUrl}
               alt={member.name}
               width={100}
               height={100}
@@ -43,8 +48,8 @@ export default function Member({ member }: MemberProps) {
           <div className="flex w-full justify-between">
             <div className="flex-col w-1/3">
               <div>나이: {age}</div>
-              <div>키: {member.height}</div>
-              <div>몸무게: {member.weight}</div>
+              <div>키: {userInfo.height}</div>
+              <div>몸무게: {userInfo.weight}</div>
             </div>
             <div className="flex-col w-1/3">
               <div>포지션: {member.position.join(', ')}</div>
