@@ -16,6 +16,7 @@ import teamData from '../../../../../public/data/leagueTeam.json';
 import { colorSequence } from '@/config/teamColor-seq';
 import { useRouter } from 'next/navigation';
 import { useSetGameDatas } from '@/store/settingGameData';
+import { formatToYMD } from '../../../../../utils/formatDate';
 
 /**
  * [화면 구성시 필요한 값]
@@ -35,22 +36,29 @@ import { useSetGameDatas } from '@/store/settingGameData';
  */
 
 type GameType = 'l-free' | 'l-ing' | 'normal' | 'event';
+type VoteDataType = {
+  gameDate: Date | string;
+  teamNum: number;
+  gameType: string;
+  adminMemo?: string;
+};
 
 // TODO: useDday hooks 날짜 관련 hooks로 변경 후 값 수정하ㅣ
 const AdminVoteSetting = () => {
   const router = useRouter();
   const { setGameDatas } = useSetGameDatas();
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(0);
-  const [selectedTeamNum, setSelectedTeamNum] = useState(0);
-  const [selectedGameType, setSelectedGameType] = useState('');
-  const [adminMemo, setAdminMemo] = useState('');
   const { days, startDay } = getDaysInMonth(
     currentDate.getFullYear(),
     currentDate.getMonth(),
   );
 
-  const changeMonth = (count: number) => {
+  const [selectedDate, setSelectedDate] = useState(0);
+  const [selectedTeamNum, setSelectedTeamNum] = useState(0);
+  const [selectedGameType, setSelectedGameType] = useState('');
+  const [adminMemo, setAdminMemo] = useState('');
+
+  const onclickChangeMonth = (count: number) => {
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth() + count,
@@ -61,21 +69,19 @@ const AdminVoteSetting = () => {
   };
 
   const onClickSelectDate = (day: number) => {
-    setSelectedDate((prev) => {
-      if (prev === day) {
-        return 0;
-      }
-
+    setSelectedDate(() => {
       setCurrentDate(
         new Date(currentDate.getFullYear(), currentDate.getMonth(), day),
       );
       return day;
     });
+
     scrollTo({
       top: 200,
       behavior: 'smooth',
     });
   };
+
   const handleSelectTeamNum = (count: number) => {
     setSelectedTeamNum(count);
   };
@@ -84,42 +90,46 @@ const AdminVoteSetting = () => {
     setSelectedGameType(id);
   };
 
-  // TODO: 임시로 로컬 스토리지 저장
-  const onClickRegisterGame = () => {
-    if (
-      selectedDate === 0 &&
-      selectedTeamNum === 0 &&
-      selectedGameType === ''
-    ) {
-      console.log('selectedDate: ', selectedDate);
-      console.log('selectedTeamNum: ', selectedTeamNum);
-      console.log('selectedGameType: ', selectedGameType);
-      console.log('저장할 값 오류');
-      return;
-    }
-
+  const handleValidateRegisterData = () => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
     const selectedFullDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
       selectedDate,
     );
 
-    if (selectedFullDate < today) {
-      console.log('날짜 선택 오류');
-      return;
+    // 날짜 선택 검증
+    // 1. 날짜를 선택했는지? 2. 현재일 기준 과거 날짜를 고르지 않았는지?
+    if (selectedDate === 0) {
+      return { isValid: false, msg: '날짜를 선택해주세요' };
     }
 
-    const sendData = {
-      gameDate: currentDate,
+    if (selectedFullDate < today) {
+      return { isValid: false, msg: '설정할 수 없는 날짜입니다' };
+    }
+
+    // 경기 종류 선택
+    // 1. 경기 타입을 선택했는지?
+    if (selectedGameType === '') {
+      return { isValid: false, msg: '경기 타입을 선택해주세요' };
+    }
+
+    return { isValid: true };
+  };
+
+  // TODO: 임시로 로컬 스토리지 저장
+  const onClickRegisterGame = () => {
+    if (!handleValidateRegisterData().isValid) {
+      return console.log(handleValidateRegisterData().msg);
+    }
+    console.log(formatToYMD(currentDate));
+
+    const sendData: VoteDataType = {
+      gameDate: formatToYMD(currentDate),
       teamNum: selectedTeamNum,
       gameType: selectedGameType,
       adminMemo: adminMemo,
     };
-
-    console.log('sendData', sendData);
 
     localStorage.setItem('gamePlan', JSON.stringify(sendData));
     setGameDatas(true);
@@ -130,7 +140,7 @@ const AdminVoteSetting = () => {
     <div className="h-[900px] relative">
       <Wrapper>
         <div className="flex items-center justify-center gap-4 mb-5">
-          <button onClick={() => changeMonth(-1)}>
+          <button onClick={() => onclickChangeMonth(-1)}>
             <Image
               src={'/img/icon/icon-arrow_back.svg'}
               alt="이전"
@@ -141,7 +151,7 @@ const AdminVoteSetting = () => {
           <Text type="p" fw={700} fz={32} className="font-jua">
             {currentDate.getFullYear()} {monthList[currentDate.getMonth()]}
           </Text>
-          <button onClick={() => changeMonth(1)}>
+          <button onClick={() => onclickChangeMonth(1)}>
             <Image
               src={'/img/icon/icon-arrow_forward.svg'}
               alt="다음"

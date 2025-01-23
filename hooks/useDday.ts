@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { parseToDate } from "../utils/formatDate";
 
 type Props = {
   timeLeft: string;
@@ -9,7 +10,7 @@ type Props = {
 }
 
 /**
- * @param startGameDate ISO 8601 형식
+ * @param startGameDate
  * @returns {
  *  timeLeft ( 남은 시간 )
  *  timePercent ( 남은 시간 퍼센트 )
@@ -24,19 +25,16 @@ export function useDday(startGameDate: string): Props {
   const [timeYear, setTimeYear] = useState<number>(0);
   const [isEndVote, setIsEndVote] = useState(false);
   const [formatDate ,setFormatDate] = useState('')
-
   useEffect(() => {
-    if (!startGameDate) return;
-
     function calculateDday() {
       const now = new Date();
-      const gameDate = new Date(startGameDate);
+      const gameDate = parseToDate(startGameDate)
       const voteEndDate = new Date(gameDate);
       voteEndDate.setDate(voteEndDate.getDate() - 1);
 
       const totalDuration = voteEndDate.getTime() - now.getTime();
       const remainingTime = voteEndDate.getTime() - now.getTime();
-
+      console.log(remainingTime)
       if (remainingTime < 0) {
         setTimeLeft("투표 마감!");
         setTimePercent(100);

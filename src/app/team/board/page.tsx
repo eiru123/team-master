@@ -1,25 +1,15 @@
 'use client';
 
 import TopBar from '@/components/TopGnb';
-import { useDday } from '../../../../hooks/useDday';
 import MemberList from './_components/MemberList';
 import LeagueInfo from './_components/LeagueInfo';
-import { useEffect, useState } from 'react';
 import VoteContainer from './_components/VoteContainer';
 import NoticeContainer from './_components/NoticeContainer';
-import Wrapper from '@/components/ui/Wrapper';
 import Container from '@/components/ui/Container';
 
-import teamList from '../../../../public/data/leagueTeam.json';
 import Link from 'next/link';
 import { useSetGameDatas } from '@/store/settingGameData';
-
-type GameData = {
-  gameDate: string;
-  teamNum: string;
-  gameType: string;
-  adminMemo: string;
-};
+import { useEffect, useState } from 'react';
 
 const TeamMainPage = () => {
   // 카카오 AD-fit
@@ -57,34 +47,23 @@ const TeamMainPage = () => {
   // };
 
   const { gameDatas } = useSetGameDatas();
-  const [season, setSeason] = useState<string>('1');
-  const [gameData, setGameData] = useState<GameData | null>(null);
-  const { timePercent, timeLeft, timeYear, isEndVote } = useDday(
-    gameData?.gameDate,
-  );
-
+  const [voteData, setVoteData] = useState(null);
   const onValidatorLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (gameData === null) e.preventDefault();
+    if (!gameDatas) e.preventDefault();
   };
 
-  // (임시) 시즌 데이터
   useEffect(() => {
-    setSeason('4');
-  }, []);
-
-  // (임시) 경기 일정 데이터
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const onLoadGameData = () => {
-        const resData = localStorage.getItem('gamePlan');
-        if (resData) {
-          setGameData(JSON.parse(resData));
-        }
-      };
-
-      onLoadGameData();
+    const storedGameplan = localStorage.getItem('gamePlan');
+    if (storedGameplan) {
+      try {
+        const data = JSON.parse(storedGameplan);
+        setVoteData(data);
+      } catch (error) {
+        console.error('Invalid JSON in localStorage:', error);
+        setVoteData(null);
+      }
     }
-  }, [gameDatas]);
+  }, [gameDatas, setVoteData]);
 
   return (
     <>
@@ -95,20 +74,14 @@ const TeamMainPage = () => {
 
         {/* 투표하기 */}
         <Link href="/team/vote" onClick={onValidatorLink}>
-          <VoteContainer
-            timePercent={timePercent}
-            timeLeft={timeLeft}
-            isEndVote={isEndVote}
-          />
+          <VoteContainer voteData={voteData} />
         </Link>
 
         {/* 멤버리스트 */}
-        <Wrapper>
-          <MemberList />
-        </Wrapper>
+        <MemberList />
 
         {/* 리그전 기록 */}
-        <LeagueInfo year={timeYear} season={season} teamList={teamList} />
+        <LeagueInfo />
 
         {/* 광고 */}
         {/* <div className="adfit" style={{ margin: '10px 0' }}></div> */}

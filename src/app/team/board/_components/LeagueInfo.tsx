@@ -1,21 +1,9 @@
 import React from 'react';
 import Text from '@/components/ui/Text';
 import Image from 'next/image';
+import teamList from '../../../../../public/data/leagueTeam.json';
 
-type Teams = {
-  name: string;
-  score: string;
-  rate: number;
-  src: string;
-};
-
-type Props = {
-  year: number;
-  season: string;
-  teamList: Teams[];
-};
-
-const LeagueInfo = ({ season, teamList }: Props) => {
+const LeagueInfo = () => {
   const year = new Date().getFullYear();
 
   const handleColor = (rate: number) => {
@@ -48,7 +36,7 @@ const LeagueInfo = ({ season, teamList }: Props) => {
           color="white"
           className="text-center font-jua"
         >
-          {year} 시즌 {season}
+          {year} 시즌 4
         </Text>
         <Text type="p" fz={12} color="white" className="text-center">
           2025.01 - 2025.02
