@@ -60,41 +60,40 @@ const LeagueInfo = ({ season, teamList }: Props) => {
           .sort((a, b) => a.rate - b.rate)
           .map((item) => {
             return (
-              <React.Fragment key={item.name}>
+              <div
+                className=" flex flex-col w-full overflow-hidden relative"
+                style={item.rate === 1 ? { height: 230 } : null}
+                key={item.name}
+              >
                 <div
-                  className=" flex flex-col w-full overflow-hidden relative"
-                  style={item.rate === 1 ? { height: 230 } : null}
+                  className=" px-4 py-1 flex items-center justify-between"
+                  style={{ backgroundColor: handleColor(item.rate).bg }}
                 >
-                  <div
-                    className=" px-4 py-1 flex items-center justify-between"
-                    style={{ backgroundColor: handleColor(item.rate).bg }}
+                  <Text
+                    type="span"
+                    fw={700}
+                    fz={18}
+                    className="w-[150px]"
+                    style={{ color: handleColor(item.rate).font }}
                   >
-                    <Text
-                      type="span"
-                      fw={700}
-                      fz={18}
-                      className="w-[150px]"
-                      style={{ color: handleColor(item.rate).font }}
-                    >
-                      {item.rate}위 {item.name}
-                    </Text>
-                    <Text type="span" fz={12} color="white">
-                      {item.score}
-                    </Text>
-                  </div>
-                  {item.rate === 1 ? (
-                    <Image
-                      src={item.src}
-                      alt="팀 단체사진"
-                      width={500}
-                      height={200}
-                      unoptimized
-                      className=" object-cover mt-1"
-                      priority
-                    />
-                  ) : null}
+                    {item.rate}위 {item.name}
+                  </Text>
+                  <Text type="span" fz={12} color="white">
+                    {item.score}
+                  </Text>
                 </div>
-              </React.Fragment>
+                {item.rate === 1 ? (
+                  <Image
+                    src={item.src}
+                    alt="팀 단체사진"
+                    width={500}
+                    height={200}
+                    unoptimized
+                    className=" object-cover mt-1"
+                    priority
+                  />
+                ) : null}
+              </div>
             );
           })}
       </div>
