@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   darkMode: ['class'],
@@ -67,29 +67,24 @@ const config: Config = {
       },
       keyframes: {
         goTop: {
-          '0%': {
-            top: '50%',
-          },
-          '100%': {
-            top: '2rem',
-          },
+          '0%': { top: '50%' },
+          '100%': { top: '2rem' },
         },
         fadeIn: {
-          from: {
-            opacity: '0',
-          },
-          to: {
-            opacity: '1',
-          },
+          from: { opacity: '0' },
+          to: { opacity: '1' },
         },
         fadeOut: {
-          from: {
-            opacity: '1',
-          },
-          to: {
-            opacity: '0',
-            display: 'none',
-          },
+          from: { opacity: '1' },
+          to: { opacity: '0', display: 'none' },
+        },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
         stampEffect: {
           '0%': { transform: 'scale(2)', opacity: '0' },
@@ -101,6 +96,8 @@ const config: Config = {
         moveTop: 'goTop 1s ease-in-out forwards',
         fadeIn: 'fadeIn .5s ease-in-out forwards',
         fadeOut: 'fadeOut .5s ease-in-out forwards',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
         stamp: 'stampEffect 0.5s ease-out',
       },
       transformOrigin: {
