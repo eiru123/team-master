@@ -14,25 +14,7 @@ interface MemberProps {
   setSelectedMemberId: (id: string) => void;
 }
 
-// const makePercent = (value: number) => {
-//   return `${Math.round(value * 100)}%`;
-// };
-
-// const getAge = (birthDate: string) => {
-//   return new Date().getFullYear() - new Date(birthDate).getFullYear();
-// };
-
-// const getGameData = ({ attendance, win, totalGame }: MemberGameStats) => {
-//   const attendanceRate = makePercent(attendance / totalGame);
-//   const winRate = makePercent(win / totalGame);
-//   return { attendanceRate, winRate };
-// };
-
-// 데이터를 가지고 오는 layer -> 데이터를 가공 -> 상태로 저장해서 사용
 export default function Member({ member, setSelectedMemberId }: MemberProps) {
-  // const { userInfo, gameData } = member;
-  // const age = getAge(userInfo.birthDate);
-  // const { attendanceRate, winRate } = getGameData(gameData);
   return (
     <CarouselItem
       className="basis-1/3"
@@ -45,7 +27,7 @@ export default function Member({ member, setSelectedMemberId }: MemberProps) {
         </CardHeader>
         <CardContent>
           <Image
-            src={member.userInfo.imageUrl}
+            src={member.imageUrl}
             alt={member.name}
             width={100}
             height={100}

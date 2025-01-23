@@ -11,11 +11,11 @@ export default function MemberListPage() {
     (member) => member.id === selectedMemberId,
   );
   return (
-    <Container display="flex" className="h-[calc(100%-70px)] flex-col gap-4">
+    <Container display="flex" className="!h-[calc(100%-70px)] flex-col gap-4">
       <div className="w-full h-10 flex justify-center items-center bg-gray-200">
         <h1>팀 멤버 목록</h1>
       </div>
-      <div className="w-full flex-1 flex flex-col gap-4 overflow-auto">
+      <div className="w-full flex flex-1 flex-col gap-4 overflow-auto">
         <MemberList setSelectedMemberId={setSelectedMemberId} />
         {selectedMember && <MemberDetail selectedMember={selectedMember} />}
       </div>
