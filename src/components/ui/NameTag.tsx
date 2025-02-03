@@ -3,49 +3,37 @@ import Text from './Text';
 
 type Props = {
   type: 'l-free' | 'l-ing' | 'normal' | 'event';
+  useYn?: boolean;
 };
 
-const NameTag: React.FC<Props> = ({ type }) => {
-  switch (type) {
-    case 'l-free':
-      return (
-        <div className="w-fit px-2 py-1 rounded-md mb-1 bg-[#7e7639]">
-          <Text type="p" fz={12} color="#fff">
-            리그 프리시즌
-          </Text>
-        </div>
-      );
+const NameTag: React.FC<Props> = ({ type, useYn = true }) => {
+  const backgroundColors = {
+    'l-free': '#7e7639',
+    'l-ing': '#FFD700',
+    normal: '#3C0800',
+    event: '#7661FB',
+  };
 
-    case 'l-ing':
-      return (
-        <div className="w-fit px-2 py-1 rounded-md mb-1 bg-yellow-400">
-          <Text type="p" fz={12} color="#191919">
-            리그 시즌 ing
-          </Text>
-        </div>
-      );
+  const backgroundColor = useYn ? backgroundColors[type] : '#f4f4f4';
+  const textColor = useYn && type !== 'l-ing' ? '#fff' : '#191919';
 
-    case 'normal':
-      return (
-        <div className="w-fit px-2 py-1 rounded-md mb-1 bg-[#3C0800]">
-          <Text type="p" fz={12} color="#fff">
-            일반경기
-          </Text>
-        </div>
-      );
+  const labels = {
+    'l-free': '리그 프리시즌',
+    'l-ing': '리그 시즌 ing',
+    normal: '일반경기',
+    event: '이벤트전',
+  };
 
-    case 'event':
-      return (
-        <div className="w-fit px-2 py-1 rounded-md mb-1 bg-[#7661FB]">
-          <Text type="p" fz={12} color="#fff">
-            이벤트전
-          </Text>
-        </div>
-      );
-
-    default:
-      return <p>설정필요</p>;
-  }
+  return (
+    <div
+      className="w-fit px-2 py-1 rounded-md mb-1"
+      style={{ backgroundColor }}
+    >
+      <Text type="p" fz={12} color={textColor}>
+        {labels[type]}
+      </Text>
+    </div>
+  );
 };
 
 export default NameTag;

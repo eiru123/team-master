@@ -14,7 +14,7 @@ const Container: React.FC<ContainerProps> = ({
     case 'flex':
       return (
         <main
-          className={`bg-main dark:bg-darkMain w-full h-screen relative pb-5 flex flex-col justify-center items-center ${rest.className}`}
+          className={`bg-main dark:bg-darkMain w-full h-screen relative flex flex-col justify-center items-center ${rest.className}`}
         >
           {children}
         </main>
@@ -23,7 +23,7 @@ const Container: React.FC<ContainerProps> = ({
     case 'block':
       return (
         <main
-          className={`bg-main dark:bg-darkMain w-full h-full min-h-screen relative pb-5 ${rest.className}`}
+          className={`bg-main dark:bg-darkMain w-full h-full min-h-screen relative ${rest.className}`}
         >
           {children}
         </main>

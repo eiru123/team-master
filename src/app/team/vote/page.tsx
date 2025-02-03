@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDday } from '../../../../hooks/useDday';
 import TopBar from '@/components/TopGnb';
 import NameTag from '@/components/ui/NameTag';
@@ -8,6 +8,7 @@ import Text from '@/components/ui/Text';
 import Image from 'next/image';
 import MemberTag from './_components/MemberTag';
 import { setLocalStorage } from '../../../../utils/handleLocalStorage';
+import VoteBasketballSvg from '@/components/ui/svg/VoteBasketballSvg';
 
 /**
  ** 경기 일정이 없을 경우 화면에 보여질 데이터 ( admin / user 공통 )
@@ -43,10 +44,19 @@ import { setLocalStorage } from '../../../../utils/handleLocalStorage';
  * - 본인 + 나머지 팀의 출석 인원 ( 참, 불참 전부 )
  */
 
+type GameData = {
+  gameDate: string;
+  teamNum: string;
+  gameType: string;
+  adminMemo: string;
+};
+
 const VotePage = () => {
-  const { timeLeft, isEndVote } = useDday('2025-01-20');
+  const [gameData, setGameData] = useState<GameData | null>(null);
   const [voteStatus, setVoteStatus] = useState('');
   const [isVote, setIsVote] = useState(false);
+  const { timeLeft, isEndVote, formatDate } = useDday(gameData?.gameDate);
+
   // join or skip
   const onClickVote = (id: string) => {
     setVoteStatus(id);
@@ -65,6 +75,20 @@ const VotePage = () => {
     setIsVote(false);
   };
 
+  // (임시) 경기 일정 데이터
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const onLoadGameData = () => {
+        const resData = localStorage.getItem('gamePlan');
+        if (resData) {
+          setGameData(JSON.parse(resData));
+        }
+      };
+
+      onLoadGameData();
+    }
+  }, []);
+
   return (
     <>
       <TopBar depth={1} title="투표하기" />
@@ -77,7 +101,7 @@ const VotePage = () => {
           className="vote-text"
           style={{ fontSize: '24px', margin: '8px 0' }}
         >
-          2025-01-11 (토)
+          {formatDate} (토)
         </Text>
         <Text type="p" className="vote-text">
           {String(timeLeft)}
@@ -95,13 +119,9 @@ const VotePage = () => {
           >
             <Text type="span">참</Text>
             {voteStatus === 'join' ? (
-              <Image
-                src={'/img/vote/stamp.png'}
-                alt="투표 도장"
-                width={40}
-                height={40}
-                className=" absolute bottom-5 right-5 animate-stamp"
-              />
+              <div className=" absolute bottom-5 right-5 animate-stamp">
+                <VoteBasketballSvg width={40} height={40} useYn={true} />
+              </div>
             ) : null}
           </button>
 
@@ -111,13 +131,9 @@ const VotePage = () => {
           >
             <Text type="span">불참</Text>
             {voteStatus === 'skip' ? (
-              <Image
-                src={'/img/vote/stamp.png'}
-                alt="투표 도장"
-                width={40}
-                height={40}
-                className=" absolute bottom-5 right-5 animate-stamp"
-              />
+              <div className=" absolute bottom-5 right-5 animate-stamp">
+                <VoteBasketballSvg width={40} height={40} useYn={true} />
+              </div>
             ) : null}
           </button>
 

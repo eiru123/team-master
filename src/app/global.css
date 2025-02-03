@@ -63,7 +63,6 @@
 }
 
 body {
-  padding-bottom: 30px;
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
@@ -117,6 +116,7 @@ body {
 .height-600 {
   height: 500px;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;

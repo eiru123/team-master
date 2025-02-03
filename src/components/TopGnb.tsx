@@ -17,6 +17,7 @@ const TopBar = ({ depth, title }: Props) => {
           <Title type="main" classnames="font-jua">
             {title}
           </Title>
+          <div className="w-[32px] h-[32px]"></div>
         </Wrapper>
       );
 
@@ -27,6 +28,7 @@ const TopBar = ({ depth, title }: Props) => {
           <GoBackBtn />
 
           <Title type="sub">{title}</Title>
+          <div className="w-[32px] h-[32px]"></div>
         </Wrapper>
       );
 

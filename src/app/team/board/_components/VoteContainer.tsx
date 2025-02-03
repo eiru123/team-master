@@ -1,46 +1,51 @@
-import React from 'react';
 import './voteContainer.css';
 import NameTag from '@/components/ui/NameTag';
 import Image from 'next/image';
 import Text from '@/components/ui/Text';
+import { useDday } from '../../../../../hooks/useDday';
 
 type Props = {
-  timePercent: number;
-  timeLeft: string;
-  isEndVote: boolean;
+  voteData: {
+    teamNum: number;
+    gameDate: string;
+    gameType: string;
+    adminMemo: string;
+  };
 };
 
-const VoteContainer = ({ timePercent, timeLeft, isEndVote }: Props) => {
+// 사용자 팀 컬러 설정
+/**
+ * team-w : 화이트팀
+ * team-b : 블랙팀
+ * team-p : 퍼플팀
+ * no-team : white
+ */
+
+{
+  /* 경기 타입(NameTag) 1.리그전 1-1. 리그 프리시즌 1-2. 리그 시즌 ing 2.이벤트전 3. 일반경기 */
+}
+{
+  /* 투표 디스플레이
+          1. 경기일정 o, 투표 o, 팀배정 o : 팀 컬러 유니폼
+          2. 경기일정 o, 투표 o, 팀배정 x : 점선 유니폼
+          3. 경기일정 o, 투표 x, 투표 종료 x : 투표 유니폼
+          4. 경기일정 o, 투표 o, 경기 불참 : 불참 유니폼
+          5. 경기일정 o, 투표 x, 투표 종료 o : 불참 유니폼
+          6. 경기일정 x : 경기 일정 없음 문구
+      */
+}
+
+const VoteContainer = ({ voteData }: Props) => {
+  const { timePercent, timeLeft, isEndVote } = useDday(voteData?.gameDate);
+
   const percent = Math.floor(timePercent);
-
-  // 사용자 팀 컬러 설정
-  /**
-   * team-w : 화이트팀
-   * team-b : 블랙팀
-   * team-p : 퍼플팀
-   * no-team : white
-   */
-
-  {
-    /* 경기 타입(NameTag) 1.리그전 1-1. 리그 프리시즌 1-2. 리그 시즌 ing 2.이벤트전 3. 일반경기 */
-  }
-  {
-    /* 투표 디스플레이
-            1. 경기일정 o, 투표 o, 팀배정 o : 팀 컬러 유니폼
-            2. 경기일정 o, 투표 o, 팀배정 x : 점선 유니폼
-            3. 경기일정 o, 투표 x, 투표 종료 x : 투표 유니폼
-            4. 경기일정 o, 투표 o, 경기 불참 : 불참 유니폼
-            5. 경기일정 o, 투표 x, 투표 종료 o : 불참 유니폼
-            6. 경기일정 x : 경기 일정 없음 문구
-        */
-  }
   const userTeamInfo = {
     team: 'no-team',
   };
 
   return (
     <>
-      {isEndVote ? (
+      {!isEndVote ? (
         <div className="vote-container h-[100px]">
           <Text type="p" fw={700}>
             경기 일정이 없습니다

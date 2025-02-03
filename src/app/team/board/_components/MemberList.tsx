@@ -4,6 +4,7 @@ import Text from '@/components/ui/Text';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import mainSliderSettings from '@/config/reactSlick-settings';
+import Wrapper from '@/components/ui/Wrapper';
 
 const MemberList = () => {
   const members = [
@@ -70,7 +71,7 @@ const MemberList = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <div className="flex items-center justify-between">
         <Text type="p" fz={18} fw={700} classname="">
           우리 팀을 소개합니다.
@@ -123,7 +124,7 @@ const MemberList = () => {
           ))}
         </Slider>
       </div>
-    </>
+    </Wrapper>
   );
 };
 

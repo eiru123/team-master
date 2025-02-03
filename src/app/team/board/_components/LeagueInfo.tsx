@@ -1,21 +1,9 @@
 import React from 'react';
 import Text from '@/components/ui/Text';
 import Image from 'next/image';
+import teamList from '../../../../../public/data/leagueTeam.json';
 
-type Teams = {
-  name: string;
-  score: string;
-  rate: number;
-  src: string;
-};
-
-type Props = {
-  year: number;
-  season: string;
-  teamList: Teams[];
-};
-
-const LeagueInfo = ({ season, teamList }: Props) => {
+const LeagueInfo = () => {
   const year = new Date().getFullYear();
 
   const handleColor = (rate: number) => {
@@ -48,7 +36,7 @@ const LeagueInfo = ({ season, teamList }: Props) => {
           color="white"
           className="text-center font-jua"
         >
-          {year} 시즌 {season}
+          {year} 시즌 4
         </Text>
         <Text type="p" fz={12} color="white" className="text-center">
           2025.01 - 2025.02
@@ -60,40 +48,40 @@ const LeagueInfo = ({ season, teamList }: Props) => {
           .sort((a, b) => a.rate - b.rate)
           .map((item) => {
             return (
-              <>
+              <div
+                className=" flex flex-col w-full overflow-hidden relative"
+                style={item.rate === 1 ? { height: 230 } : null}
+                key={item.name}
+              >
                 <div
-                  className=" flex flex-col w-full overflow-hidden relative"
-                  style={item.rate === 1 ? { height: 230 } : null}
+                  className=" px-4 py-1 flex items-center justify-between"
+                  style={{ backgroundColor: handleColor(item.rate).bg }}
                 >
-                  <div
-                    className=" px-4 py-1 flex items-center justify-between"
-                    style={{ backgroundColor: handleColor(item.rate).bg }}
+                  <Text
+                    type="span"
+                    fw={700}
+                    fz={18}
+                    className="w-[150px]"
+                    style={{ color: handleColor(item.rate).font }}
                   >
-                    <Text
-                      type="span"
-                      fw={700}
-                      fz={18}
-                      className="w-[150px]"
-                      style={{ color: handleColor(item.rate).font }}
-                    >
-                      {item.rate}위 {item.name}
-                    </Text>
-                    <Text type="span" fz={12} color="white">
-                      {item.score}
-                    </Text>
-                  </div>
-                  {item.rate === 1 ? (
-                    <Image
-                      src={item.src}
-                      alt="팀 단체사진"
-                      width={500}
-                      height={200}
-                      unoptimized
-                      className=" object-cover mt-1"
-                    />
-                  ) : null}
+                    {item.rate}위 {item.name}
+                  </Text>
+                  <Text type="span" fz={12} color="white">
+                    {item.score}
+                  </Text>
                 </div>
-              </>
+                {item.rate === 1 ? (
+                  <Image
+                    src={item.src}
+                    alt="팀 단체사진"
+                    width={500}
+                    height={200}
+                    unoptimized
+                    className=" object-cover mt-1"
+                    priority
+                  />
+                ) : null}
+              </div>
             );
           })}
       </div>
