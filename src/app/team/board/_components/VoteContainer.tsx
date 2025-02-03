@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import './voteContainer.css';
 import NameTag from '@/components/ui/NameTag';
 import Image from 'next/image';

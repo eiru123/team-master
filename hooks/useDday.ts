@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { parseToDate } from "../utils/formatDate";
+import { useEffect, useState } from 'react';
+import { parseToDate } from '../utils/formatDate';
 
 type Props = {
   timeLeft: string;
   timePercent: number;
   timeYear: number;
   isEndVote: boolean;
-  formatDate: string
-}
+  formatDate: string;
+};
 
 /**
  * @param startGameDate
@@ -20,35 +20,41 @@ type Props = {
  * }
  */
 export function useDday(startGameDate: string): Props {
-  const [timeLeft, setTimeLeft] = useState<string>("");
+  const [timeLeft, setTimeLeft] = useState<string>('');
   const [timePercent, setTimePercent] = useState<number>(0);
   const [timeYear, setTimeYear] = useState<number>(0);
   const [isEndVote, setIsEndVote] = useState(false);
-  const [formatDate ,setFormatDate] = useState('')
+  const [formatDate, setFormatDate] = useState('');
+
   useEffect(() => {
+    if (!startGameDate) return;
+
     function calculateDday() {
       const now = new Date();
-      const gameDate = parseToDate(startGameDate)
+      const gameDate = parseToDate(startGameDate);
       const voteEndDate = new Date(gameDate);
       voteEndDate.setDate(voteEndDate.getDate() - 1);
 
       const totalDuration = voteEndDate.getTime() - now.getTime();
       const remainingTime = voteEndDate.getTime() - now.getTime();
-      console.log(remainingTime)
       if (remainingTime < 0) {
-        setTimeLeft("투표 마감!");
+        setTimeLeft('투표 마감!');
         setTimePercent(100);
         setIsEndVote(true);
         return;
       }
 
       const year = gameDate.getFullYear();
-      const month = (gameDate.getMonth() + 1).toString().padStart(2, "0");
-      const day = gameDate.getDate().toString().padStart(2, "0");
+      const month = (gameDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = gameDate.getDate().toString().padStart(2, '0');
 
       const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+      const hours = Math.floor(
+        (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      const minutes = Math.floor(
+        (remainingTime % (1000 * 60 * 60)) / (1000 * 60),
+      );
       const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
       setTimeLeft(`${days}일 ${hours}시간 ${minutes}분 ${seconds}초`);
